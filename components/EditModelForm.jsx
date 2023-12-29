@@ -1,4 +1,4 @@
-export default function AddModel() {
+export default function EditModelForm() {
   return (
     <div>
       <form className="flex flex-col gap-3">
@@ -13,7 +13,7 @@ export default function AddModel() {
           placeholder="Model Description"
         />
         <button className="bg-green-600 font-bold text-white py-3 px-6 w-fit">
-          Add Model
+          Update Model
         </button>
       </form>
     </div>
