@@ -53,3 +53,13 @@ export async function GET() {
   const models = await Model.find();
   return NextResponse.json(models);
 }
+
+export async function DELETE(request) {
+  const id = request.nextUrl.searchParams.get("id");
+  await connectMongoDB();
+  await Model.findByIdAndDelete(id);
+  return NextResponse.json(
+    { message: "Model deleted successfully!" },
+    { status: 200 }
+  );
+}
