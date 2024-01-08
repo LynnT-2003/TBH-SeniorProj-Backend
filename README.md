@@ -33,8 +33,9 @@ TBH-Chatbot is a Senior Project aimed at being able to provide clear responses t
 
 - Optimize Frontend to fit all the data
 
-- Integrate Filter / Search functions
+- Filter / Search functions
 
+- Login User Authentication 
 
 ## Tech Stack
 
