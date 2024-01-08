@@ -1,13 +1,15 @@
 import Link from "next/link";
 import RemoveBtn from "./RemoveBtn";
 import { HiPencilAlt } from "react-icons/hi";
-import { getTraceEvents } from "next/dist/trace";
 
 const getModels = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/models", {
-      cache: "no-store",
-    });
+    const res = await fetch(
+      "https://tbh-chat-essentials.vercel.app/api/models",
+      {
+        cache: "no-store",
+      }
+    );
 
     if (!res.ok) {
       throw new Error(
