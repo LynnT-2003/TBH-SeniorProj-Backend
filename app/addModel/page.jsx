@@ -29,31 +29,35 @@ export default function AddModel() {
     }
 
     try {
-      const res = await fetch("http://localhost:3000//api/models", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          Brand: brand,
-          Product_Name: productName,
-          Price: price,
-          Antutu_Score: antutuScore,
-          DXO_Score: dxoScore,
-          Battery: battery,
-          Charging_Rate: charging,
-          Display_Size: displaySize,
-          Display_Type: displayType,
-          // ID: id,
-          Main_Camera: mainCamera,
-          SOC: SOC,
-          Weight: weight,
-          RAM: RAM,
-          Storage: storage,
-          Note: note,
-          Available_in_local_market: availability,
-        }),
-      });
+      const res = await fetch(
+        "https://tbh-chat-essentials.vercel.app/api/models",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            Brand: brand,
+            Product_Name: productName,
+            Price: price,
+            Antutu_Score: antutuScore,
+            DXO_Score: dxoScore,
+            Battery: battery,
+            Charging_Rate: charging,
+            Display_Size: displaySize,
+            Display_Type: displayType,
+            // ID: id,
+            Main_Camera: mainCamera,
+            SOC: SOC,
+            Weight: weight,
+            RAM: RAM,
+            Storage: storage,
+            Note: note,
+            Available_in_local_market: availability,
+          }),
+        }
+      );
     } catch (error) {
       console.log(error);
     }
