@@ -3,6 +3,6 @@
 @tailwind utilities;
 
 /* Set the background color to gray */
-body {
+/* body {
   @apply bg-black; 
-}
+} */
