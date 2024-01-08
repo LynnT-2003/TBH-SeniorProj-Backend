@@ -48,21 +48,3 @@ TBH-Chatbot is a Senior Project aimed at being able to provide clear responses t
 ## Authors
 
 - [@Lynn Thit Nyi Nyi](https://www.github.com/LynnT-2003)
-
-
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
