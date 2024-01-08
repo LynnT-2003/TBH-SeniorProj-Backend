@@ -4,7 +4,7 @@ const modelSchema = new Schema(
   {
     Available_in_local_market: Number,
     Battery: Number,
-    // Brand: String,
+    Brand: String,
     Charging_Rate: Number,
     Display_Size: Number,
     Display_Type: String,
