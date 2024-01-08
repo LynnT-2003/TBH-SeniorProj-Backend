@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# TBH-Chatbot Backend Essentials
 
-## Getting Started
+A web application for controlling, updating, and maintaining the backend data for TBH-Chatbot via a frontend web application interface. 
 
-First, run the development server:
+TBH-Chatbot is a Senior Project aimed at being able to provide clear responses to customer inquiries on mobile phone specifications and general questions in Burmese text for "TBH-Labs" Facebook Page.  
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Features
 
-## Learn More
+- Create new Models
+- Read existing Models 
+- Update existing Models 
+- Delete existing Models 
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Roadmap
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Create new Next.js Project
 
-## Deploy on Vercel
+- Complete frontend
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Set-up MongoDB
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Set-up API Endpoints
+
+- Set-up POST, GET, UPDATE, DELETE requests
+
+- Verify on Postman API
+
+- Connect Frontend to Backend
+
+- Optimize Frontend to fit all the data
+
+- Integrate Filter / Search functions
+
+
+## Tech Stack
+
+**Deployment:** Next.js, Vercel
+
+**Client:** React, TailwindCSS
+
+**Server:** MongoDB / Mongoose
+
+
+## Authors
+
+- [@Lynn Thit Nyi Nyi](https://www.github.com/LynnT-2003)
