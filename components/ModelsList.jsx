@@ -48,7 +48,7 @@ export default async function ModelsList() {
           </div>
 
           <div className="flex gap-2 items-start">
-            <RemoveBtn />
+            <RemoveBtn id={m._id} />
             <Link href={`/editModel/${m._id}`}>
               <HiPencilAlt className="" size={24} />
             </Link>
