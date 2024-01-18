@@ -6,8 +6,8 @@ export default function RemoveBtn({ id }) {
     const confirmed = confirm("Are you sure?");
     if (confirmed) {
       const res = await fetch(
-        // `https://tbh-chat-essentials.vercel.app/api/models/?id=${id}`,
-        `http://localhost:3000/api/models/?id=${id}`,
+        `https://tbh-chat-essentials.vercel.app/api/models/?id=${id}`,
+        // `http://localhost:3000/api/models/?id=${id}`,
         {
           method: "DELETE",
         }
