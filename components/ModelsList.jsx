@@ -37,14 +37,17 @@ export default async function ModelsList() {
     <>
       {models.map((m) => (
         <div
-          className="p-4 border border-slate-300 my-3 flex justify-between gap-5"
+          className="px-12 p-4 border border-slate-300 my-3 flex justify-between gap-5"
           key={m._id}
         >
           <div>
-            <h2 className="font-bold text-2xl">
+            <h2 className="text-2xl">
               {m.Brand} {m.Product_Name}
             </h2>
             <div className="">{m.Note}</div>
+            <p className="text-xs pt-3 text-blue-400">
+              Last Updated At: {new Date(m.updatedAt).toLocaleString()}
+            </p>
           </div>
 
           <div className="flex gap-2 items-start">
