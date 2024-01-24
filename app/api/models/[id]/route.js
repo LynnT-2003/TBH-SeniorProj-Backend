@@ -3,6 +3,7 @@ import Model from "@/models/model";
 import { NextResponse } from "next/server";
 
 export async function PUT(request, { params }) {
+  // console.log(request.body);
   const { id } = params;
   const {
     newAvailable_in_local_market: Available_in_local_market,
@@ -89,5 +90,5 @@ export async function GET(request, { params }) {
   const { id } = params;
   await connectMongoDB();
   const model = await Model.findOne({ _id: id });
-  return NextResponse.json({ message: model }, { status: 200 });
+  return NextResponse.json({ model }, { status: 200 });
 }
