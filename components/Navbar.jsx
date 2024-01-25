@@ -1,7 +1,9 @@
+"use client";
 import Link from "next/link";
 import { RiAddBoxLine, RiAddCircleLine } from "react-icons/ri";
 
 export default function Navbar() {
+  const user = localStorage.getItem("name");
   return (
     // <nav className="flex justify-between items-center bg-slate-800 px-8 py-3">
     //   <Link className="text-white font-bold" href={"/"}>
@@ -15,6 +17,7 @@ export default function Navbar() {
     <nav className="flex justify-between items-center bg-slate-800 px-8 py-3">
       <Link className="text-white font-bold text-2xl pl-4" href={"/"}>
         TBH-ChatBot Essentials
+        {user && <p className="text-s">Logged in as {user}</p>}
       </Link>
       <Link className="text-white text-bold p-2" href={"/addModel"}>
         <RiAddBoxLine size={60} />

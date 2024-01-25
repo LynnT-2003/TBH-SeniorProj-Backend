@@ -1,6 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { Button } from "@mui/material";
+import { Grid } from "@mui/material";
 
 export default function EditModelForm({
   id,
@@ -47,6 +49,7 @@ export default function EditModelForm({
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("To update:", { newProductName });
+    console.log("Note to update:", { newNote });
     try {
       const res = await fetch(
         `https://tbh-chat-essentials.vercel.app/api/models/${id}`,
@@ -90,6 +93,41 @@ export default function EditModelForm({
     console.log(newProductName);
   }, [newProductName]);
 
+  const [inputType, setInputType] = useState("text");
+
+  const handleToggle = () => {
+    setInputType((prevType) => (prevType === "text" ? "dropdown" : "text"));
+  };
+
+  const renderInput = () => {
+    if (inputType === "text") {
+      return (
+        <input
+          onChange={(e) => setNewNote(e.target.value)}
+          className="border border-slate-500 px-12 py-2 w-full"
+          type="text"
+          placeholder="Model Description"
+          value={newNote}
+        />
+      );
+    } else if (inputType === "dropdown") {
+      return (
+        <select
+          onChange={(e) => setNewNote(e.target.value)}
+          className="border border-slate-500 px-12 py-2 w-full"
+          value={newNote}
+        >
+          <option value="" disabled>
+            Please pick one of the following:
+          </option>
+          <option value="option1">Option 1</option>
+          <option value="option2">Option 2</option>
+          <option value="option3">Option 3</option>
+        </select>
+      );
+    }
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
@@ -100,13 +138,35 @@ export default function EditModelForm({
           type="text"
           placeholder="Product Name"
         />
-        <input
+        {/* <input
           onChange={(e) => setNewNote(e.target.value)}
           className="border border-slate-500 px-8 py-2"
           type="text"
           placeholder="Model Description"
           value={newNote}
         />
+        <Button>Toggle</Button> */}
+
+        <Grid container spacing={2} className="px-4 pt-4">
+          <Grid xs={1} className="pr-4 pt-2">
+            Note:
+          </Grid>
+          <Grid xs={10}>{renderInput()}</Grid>
+          <Grid xs={1}>
+            <Button
+              onClick={handleToggle}
+              className="pt-2 border border-slate-500"
+            >
+              Toggle
+            </Button>
+          </Grid>
+        </Grid>
+
+        {/* <CustomDropDown
+          value={newNote}
+          onChange={(e) => setNewNote(e)}
+          placeholder="Model Description"
+        /> */}
         <input
           onChange={(e) => setNewAvailableInLocalMarket(e.target.value)}
           className="border border-slate-500 px-8 py-2"
@@ -212,7 +272,6 @@ export default function EditModelForm({
           placeholder="DXO Score"
           value={newDXOScore}
         />
-
         <button className="bg-green-600 font-bold text-white py-3 px-6 w-fit">
           Update Model
         </button>
