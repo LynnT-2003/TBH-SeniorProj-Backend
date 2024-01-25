@@ -1,6 +1,5 @@
 import ModelsList from "@/components/ModelsList";
 import SearchAndFilter from "@/components/SearchAndFilter";
-import { Button } from "@mui/material";
 
 export default function Home() {
   return (

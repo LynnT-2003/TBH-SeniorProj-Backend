@@ -27,7 +27,7 @@ const getModels = async () => {
 export default function ModelsList() {
   // const models = await getModels();
 
-  const user = localStorage.getItem("name");
+  // const user = localStorage.getItem("name");
 
   const [models, setModels] = useState([]);
   const [loading, setLoading] = useState(true);
