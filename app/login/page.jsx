@@ -33,17 +33,17 @@ const Page = () => {
     if (isLoggedIn) {
       router.push("/");
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn.router]);
 
   return (
     <>
       <div>Client Login Page</div>
       <Button onClick={handleSignIn}>Sign in with Google</Button>
-      {isLoggedIn && (
+      {/* {isLoggedIn && (
         <>
           <Landing setIsLoggedIn={setIsLoggedIn} />
         </>
-      )}
+      )} */}
     </>
   );
 };
