@@ -1,10 +1,14 @@
 "use client";
-import React from "react";
+
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { RiAddBoxLine, RiAddCircleLine } from "react-icons/ri";
 
 export default function Navbar() {
-  const user = localStorage.getItem("name");
+  useEffect(() => {
+    const user = localStorage.getItem("name");
+  }, []);
+
   return (
     // <nav className="flex justify-between items-center bg-slate-800 px-8 py-3">
     //   <Link className="text-white font-bold" href={"/"}>
