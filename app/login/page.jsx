@@ -7,16 +7,16 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 const Page = () => {
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
 
-  // useEffect(() => {
-  //   // Check for authentication status on component mount
-  //   const storedIsLoggedIn = localStorage.getItem("isLoggedIn");
-  //   if (storedIsLoggedIn) {
-  //     setIsLoggedIn(true);
-  //   }
-  // }, []);
+  useEffect(() => {
+    // Check for authentication status on component mount
+    const storedIsLoggedIn = localStorage.getItem("isLoggedIn");
+    if (storedIsLoggedIn) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   const handleSignIn = async () => {
     // connsole.log("PLEASE FUCKING LOG IN");
@@ -28,22 +28,22 @@ const Page = () => {
     }
   };
 
-  // // Check if user is logged in and redirect to /client/Landing if true
-  // useEffect(() => {
-  //   if (isLoggedIn) {
-  //     router.push("/");
-  //   }
-  // }, [isLoggedIn, router]);
+  // Check if user is logged in and redirect to /client/Landing if true
+  useEffect(() => {
+    if (isLoggedIn) {
+      router.push("/");
+    }
+  }, [isLoggedIn]);
 
   return (
     <>
       <div>Client Login Page</div>
       <Button onClick={handleSignIn}>Sign in with Google</Button>
-      {/* {isLoggedIn && (
+      {isLoggedIn && (
         <>
           <Landing setIsLoggedIn={setIsLoggedIn} />
         </>
-      )} */}
+      )}
     </>
   );
 };
