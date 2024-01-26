@@ -36,9 +36,9 @@ export const signInWithGoogle = async (setIsLoggedIn) => {
       // if (auth.auth().currentUser !== null)
       //   console.log("user id: " + firebase.auth().currentUser.uid);
 
-      setIsLoggedIn(true);
+      // setIsLoggedIn(true);
 
-      localStorage.setItem("isLoggedIn", "true");
+      // localStorage.setItem("isLoggedIn", "true");
     })
     .catch((error) => {
       console.log(error);
