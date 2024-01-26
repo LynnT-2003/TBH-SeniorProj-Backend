@@ -4,9 +4,12 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { RiAddBoxLine, RiAddCircleLine } from "react-icons/ri";
 
+const [user, setUser] = useState("");
+
 export default function Navbar() {
   useEffect(() => {
-    const user = localStorage.getItem("name");
+    const storedUser = localStorage.getItem("name");
+    setUser(storedUser);
   }, []);
 
   return (
