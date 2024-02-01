@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import RemoveBtn from "./RemoveBtn";
 import { HiPencilAlt } from "react-icons/hi";
+import { Grid, Item } from "@mui/material";
 
 const getModels = async () => {
   try {
@@ -31,6 +32,13 @@ export default function ModelsList() {
 
   const [models, setModels] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const keys = ["Brand", "Product_Name"]
+  const [query, setQuery] = useState("")
+  
+  const search = (data) => {
+    return data.filter((item => keys.some((key) => item[key].toLowerCase().includes(query.toLowerCase()))))
+  }
 
   const fetchModels = async () => {
     const fetchedModels = await getModels();
@@ -62,7 +70,29 @@ export default function ModelsList() {
 
   return (
     <>
-      {models.map((m) => (
+    <div>
+      <Grid container spacing={2} className="">
+        <Grid xs={8} className="pl-4">
+          <input
+            type="text"
+            placeholder="Search..."
+            className="px-2 border border-slate-800"
+            onChange={(e) => setQuery(e.target.value)}
+          />
+        </Grid>
+        <Grid xs={4} className="flex justify-end">
+          <select className="border border-slate-800 py-0.5 pr-5">
+            <option value="" disabled selected hidden>
+              Filter by...
+            </option>
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+          </select>
+        </Grid>
+      </Grid>
+    </div>
+      {search(models).map((m) => (
         <div
           className="px-12 p-4 border border-slate-300 my-3 flex justify-between gap-5"
           key={m._id}
