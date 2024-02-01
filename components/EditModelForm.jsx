@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@mui/material";
-import { Grid } from "@mui/material";
+import { Grid, Item } from "@mui/material";
 
 export default function EditModelForm({
   id,
@@ -93,43 +93,261 @@ export default function EditModelForm({
     console.log(newProductName);
   }, [newProductName]);
 
-  const [inputType, setInputType] = useState("text");
-
-  const handleToggle = () => {
-    setInputType((prevType) => (prevType === "text" ? "dropdown" : "text"));
-  };
-
-  const renderInput = () => {
-    if (inputType === "text") {
-      return (
-        <input
-          onChange={(e) => setNewNote(e.target.value)}
-          className="border border-slate-500 px-12 py-2 w-full"
-          type="text"
-          placeholder="Model Description"
-          value={newNote}
-        />
-      );
-    } else if (inputType === "dropdown") {
-      return (
-        <select
-          onChange={(e) => setNewNote(e.target.value)}
-          className="border border-slate-500 px-12 py-2 w-full"
-          value={newNote}
-        >
-          <option value="" disabled>
-            Please pick one of the following:
-          </option>
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
-        </select>
-      );
-    }
+  const titleStyle = {
+    fontFamily: "Roboto", // Replace with the desired font family
+    fontSize: "2rem", // Adjust the font size as needed
+    fontWeight: "bold",
+    color: "#333", // Set the desired text color
   };
 
   return (
     <div>
+
+      <datalist id="ram">
+        <option value={4} />
+        <option value={6} />
+        <option value={8} />
+        <option value={12} />
+        <option value={16} />
+      </datalist>
+
+      <datalist id="storage">
+        <option value={34}/>
+        <option value={64}/>
+        <option value={128}/>
+        <option value={256}/>
+        <option value={512}/>
+      </datalist>
+
+      <datalist id="display">
+        <option value="IPS"/>
+        <option value="OLED"/>
+        <option value="PLS LED"/>
+      </datalist>
+
+      <datalist id="refreshRate">
+        <option value={60}/>
+        <option value={90}/>
+        <option value={120}/>
+        <option value={144}/>
+      </datalist>
+
+      <datalist id="shop">
+        <option value="Kyaw Mobile Mawlamyine"/>
+      </datalist>
+
+      <h1 style={titleStyle} className="pt-0">Update an Entry</h1>
+      <p className="pb-5 text-xs">API ID: {id}</p>
+      
+      <form onSubmit={handleSubmit}>
+      <Grid container spacing={2}>
+        <Grid item xs={6}>
+
+        <label style={{ display: "flex", alignItems: "center", paddingBottom:"0.15em" }}>
+          <b>Brand</b>
+        </label>
+        <input
+          onChange={(e) => setNewBrand(e.target.value)}
+          className="border border-slate-500 px-8 py-2 mb-2"
+          type="text"
+          placeholder="Brand"
+          value={newBrand}
+        />
+
+        <label style={{ display: "flex", alignItems: "center", paddingBottom:"0.15em" }}>
+          <b>Model</b>
+        </label>
+        <input
+          onChange={(e) => setNewProductName(e.target.value)}
+          value={newProductName}
+          className="border border-slate-500 px-8 py-2 mb-2"
+          type="text"
+          placeholder="Product Name"
+        />
+
+        <label style={{ display: "flex", alignItems: "center", paddingBottom:"0.15em" }}>
+          <b>Note</b>
+        </label>
+          <input
+            list="notes"
+            className="border border-slate-500 px-8 py-2 mb-2"
+            style={{ flex: 1 }} // Use flex: 1 to allow the input to take up remaining space
+            onChange={(e) => setNewNote(e.target.value)}
+            value={newNote}
+          />
+        <datalist id="notes">
+          <option value="This is note 1" />
+          <option value="This is note 2" />
+          <option value="This is note 3" />
+        </datalist>
+
+        <label style={{ display: "flex", alignItems: "center", paddingBottom:"0.15em" }}>
+          <b>Available in Local Market?</b>
+        </label>
+        <input
+          onChange={(e) => setNewAvailableInLocalMarket(e.target.value)}
+          className="border border-slate-500 px-8 py-2 mb-2"
+          type="text"
+          placeholder="Available in Local Market"
+          value={newAvailableInLocalMarket}
+        />
+
+        <label style={{ display: "flex", alignItems: "center", paddingBottom:"0.15em" }}>
+          <b>Battery</b>
+        </label>
+        <input
+          onChange={(e) => setNewBattery(e.target.value)}
+          className="border border-slate-500 px-8 py-2 mb-2"
+          type="text"
+          placeholder="Battery"
+          value={newBattery}
+        />
+
+        <label style={{ display: "flex", alignItems: "center", paddingBottom:"0.15em" }}>
+          <b>Charging Rate</b>
+        </label>
+        <input
+          onChange={(e) => setNewChargingRate(e.target.value)}
+          className="border border-slate-500 px-8 py-2 mb-2"
+          type="text"
+          placeholder="Charging Rate"
+          value={newChargingRate}
+        />
+
+        <label style={{ display: "flex", alignItems: "center", paddingBottom:"0.15em" }}>
+          <b>Display Size</b>
+        </label>
+        <input
+          onChange={(e) => setNewDisplaySize(e.target.value)}
+          className="border border-slate-500 px-8 py-2 mb-2"
+          type="text"
+          placeholder="Display Size"
+          value={newDisplaySize}
+        />
+
+        <label style={{ display: "flex", alignItems: "center", paddingBottom:"0.15em" }}>
+          <b>Display Type</b>
+        </label>
+        <input
+          list="display"
+          onChange={(e) => setNewDisplayType(e.target.value)}
+          className="border border-slate-500 px-8 py-2 mb-2"
+          type="text"
+          placeholder="Display Type"
+          value={newDisplayType}
+        />
+        </Grid>
+        <Grid item xs={6} style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        
+        {/* <label style={{ display: "flex", alignItems: "center", paddingBottom:"0.15em" }}>
+          <b>ID</b>
+        </label>
+        <input
+          onChange={(e) => setNewID(e.target.value)}
+          className="border border-slate-500 px-8 py-2 mb-2"
+          type="text"
+          placeholder="ID"
+          value={newID}
+        /> */}
+        <form onSubmit={handleSubmit}>
+        <label style={{ display: "flex", alignItems: "center", paddingBottom:"0.15em" }}>
+          <b>Main Camera</b>
+        </label>
+        <input
+          onChange={(e) => setNewMainCamera(e.target.value)}
+          className="border border-slate-500 px-8 py-2 mb-2"
+          type="text"
+          placeholder="Main Camera"
+          value={newMainCamera}
+        />
+        
+        <label style={{ display: "flex", alignItems: "center", paddingBottom:"0.15em" }}>
+          <b>Price</b>
+        </label>
+        <input
+          onChange={(e) => setNewPrice(e.target.value)}
+          className="border border-slate-500 px-8 py-2 mb-2"
+          type="text"
+          placeholder="Price"
+          value={newPrice}
+        />
+        
+        <label style={{ display: "flex", alignItems: "center", paddingBottom:"0.15em" }}>
+          <b>SOC</b>
+        </label>
+        <input
+          onChange={(e) => setNewSOC(e.target.value)}
+          className="border border-slate-500 px-8 py-2 mb-2"
+          type="text"
+          placeholder="SOC"
+          value={newSOC}
+        />
+        
+        <label style={{ display: "flex", alignItems: "center", paddingBottom:"0.15em" }}>
+          <b>Weight</b>
+        </label>
+        <input
+          onChange={(e) => setNewWeight(e.target.value)}
+          className="border border-slate-500 px-8 py-2 mb-2"
+          type="text"
+          placeholder="Weight"
+          value={newWeight}
+        />
+        
+        <label style={{ display: "flex", alignItems: "center", paddingBottom:"0.15em" }}>
+          <b>RAM</b>
+        </label>
+        <input
+          list="ram"
+          onChange={(e) => setNewRam(e.target.value)}
+          className="border border-slate-500 px-8 py-2 mb-2"
+          type="text"
+          placeholder="Ram"
+          value={newRam}
+        />
+        
+        <label style={{ display: "flex", alignItems: "center", paddingBottom:"0.15em" }}>
+          <b>Storage</b>
+        </label>
+        <input
+          list="storage"
+          onChange={(e) => setNewStorage(e.target.value)}
+          className="border border-slate-500 px-8 py-2 mb-2"
+          type="text"
+          placeholder="Storage"
+          value={newStorage}
+        />
+        
+        <label style={{ display: "flex", alignItems: "center", paddingBottom:"0.15em" }}>
+          <b>Antutu Score</b>
+        </label>
+        <input
+          onChange={(e) => setNewAntutuScore(e.target.value)}
+          className="border border-slate-500 px-8 py-2 mb-2"
+          type="text"
+          placeholder="Antutu Score"
+          value={newAntutuScore}
+        />
+        
+        <label style={{ display: "flex", alignItems: "center", paddingBottom:"0.15em" }}>
+          <b>DXO Score</b>
+        </label>
+        <input
+          onChange={(e) => setNewDXOScore(e.target.value)}
+          className="border border-slate-500 px-8 py-2 mb-2"
+          type="text"
+          placeholder="DXO Score"
+          value={newDXOScore}
+        /></form>
+        </Grid>
+      </Grid>
+      <button type="submit" className="bg-green-600 font-bold text-white py-3 px-6 w-fit mt-2">
+        Update Model
+      </button>
+      </form>
+
+      {/* <h1 style={titleStyle} className="pt-0">Update an Entry</h1>
+      <p className="pb-5 text-xs">API ID: {id}</p>
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
         <input
           onChange={(e) => setNewProductName(e.target.value)}
@@ -138,36 +356,12 @@ export default function EditModelForm({
           type="text"
           placeholder="Product Name"
         />
-        {/* <input
-          onChange={(e) => setNewNote(e.target.value)}
-          className="border border-slate-500 px-8 py-2"
-          type="text"
-          placeholder="Model Description"
-          value={newNote}
-        />
-        <Button>Toggle</Button> */}
-
-        {/* <Grid container spacing={2} className="px-4 pt-4">
-          <Grid xs={1} className="pr-4 pt-2">
-            Note:
-          </Grid>
-          <Grid xs={10}>
-          </Grid>
-          <Grid xs={1}>
-            <Button
-              onClick={handleToggle}
-              className="pt-2 border border-slate-500"
-            >
-              Toggle
-            </Button>
-          </Grid>
-        </Grid> */}
 
         <label style={{ display: "flex", alignItems: "center" }}>
           Note:&nbsp;&nbsp;
           <input
             list="notes"
-            className="pl-5 border border-slate-500 px-8 py-2"
+            className="border border-slate-500 px-8 py-2"
             style={{ flex: 1 }} // Use flex: 1 to allow the input to take up remaining space
             onChange={(e) => setNewNote(e.target.value)}
             value={newNote}
@@ -179,12 +373,6 @@ export default function EditModelForm({
           <option value="This is note 3" />
         </datalist>
 
-
-        {/* <CustomDropDown
-          value={newNote}
-          onChange={(e) => setNewNote(e)}
-          placeholder="Model Description"
-        /> */}
         <input
           onChange={(e) => setNewAvailableInLocalMarket(e.target.value)}
           className="border border-slate-500 px-8 py-2"
@@ -293,7 +481,7 @@ export default function EditModelForm({
         <button className="bg-green-600 font-bold text-white py-3 px-6 w-fit">
           Update Model
         </button>
-      </form>
+      </form> */}
     </div>
   );
 }
