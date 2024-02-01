@@ -24,6 +24,7 @@ export const signInWithGoogle = async (setIsLoggedIn) => {
   signInWithPopup(auth, provider)
     .then((result) => {
       console.log(result);
+      console.log("Logged in")
       const name = result.user.displayName;
       const email = result.user.email;
       const profilePic = result.user.photoURL;
@@ -38,7 +39,7 @@ export const signInWithGoogle = async (setIsLoggedIn) => {
 
       // setIsLoggedIn(true);
 
-      // localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("isLoggedIn", "true");
     })
     .catch((error) => {
       console.log(error);
