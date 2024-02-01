@@ -217,6 +217,8 @@ export default function AddModel() {
           Add Model
         </button>
       </form>
+
+
     </div>
   );
 }

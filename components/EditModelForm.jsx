@@ -147,11 +147,12 @@ export default function EditModelForm({
         />
         <Button>Toggle</Button> */}
 
-        <Grid container spacing={2} className="px-4 pt-4">
+        {/* <Grid container spacing={2} className="px-4 pt-4">
           <Grid xs={1} className="pr-4 pt-2">
             Note:
           </Grid>
-          <Grid xs={10}>{renderInput()}</Grid>
+          <Grid xs={10}>
+          </Grid>
           <Grid xs={1}>
             <Button
               onClick={handleToggle}
@@ -160,7 +161,24 @@ export default function EditModelForm({
               Toggle
             </Button>
           </Grid>
-        </Grid>
+        </Grid> */}
+
+        <label style={{ display: "flex", alignItems: "center" }}>
+          Note:&nbsp;&nbsp;
+          <input
+            list="notes"
+            className="pl-5 border border-slate-500 px-8 py-2"
+            style={{ flex: 1 }} // Use flex: 1 to allow the input to take up remaining space
+            onChange={(e) => setNewNote(e.target.value)}
+            value={newNote}
+          />
+        </label>
+        <datalist id="notes">
+          <option value="This is note 1" />
+          <option value="This is note 2" />
+          <option value="This is note 3" />
+        </datalist>
+
 
         {/* <CustomDropDown
           value={newNote}
