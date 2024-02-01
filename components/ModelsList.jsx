@@ -5,6 +5,7 @@ import RemoveBtn from "./RemoveBtn";
 import { HiPencilAlt } from "react-icons/hi";
 import { Grid, Item } from "@mui/material";
 import { Select, TextField, MenuItem, InputLabel, FormControl } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 const getModels = async () => {
   try {
@@ -38,6 +39,16 @@ export default function ModelsList() {
   const [query, setQuery] = useState("")
 
   const [selectedFilter, setSelectedFilter] = useState("");
+
+  const router = useRouter();
+
+  useEffect(() => {
+    // Redirect to login if not logged in
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    if (!isLoggedIn || isLoggedIn === "false") {
+      router.push('/login'); // Redirect to login page
+    }
+  }, [router]);
   
   const search = (data) => {
     // return data.filter((item => keys.some((key) => item[key].toLowerCase().includes(query.toLowerCase()))))
@@ -59,6 +70,11 @@ export default function ModelsList() {
   useEffect(() => {
     fetchModels();
   }, []);
+
+  const signOut = () => {
+    localStorage.clear();
+    router.push('/login');
+  };
 
   // if (!models) {
   //   // You can optionally show a loading spinner or message here
@@ -161,6 +177,7 @@ export default function ModelsList() {
           </div>
         </div>
       ))}
+      <button className="border border-slate-500 px-2" onClick={signOut}>Sign out</button>
     </>
   );
 }

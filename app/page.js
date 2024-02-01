@@ -6,7 +6,6 @@ export default function Home() {
     <>
       {/* <SearchAndFilter /> */}
       <ModelsList />
-      <button className="border border-slate-500 px-2">Sign out</button>
     </>
   );
 }
