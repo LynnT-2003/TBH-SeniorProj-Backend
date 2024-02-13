@@ -22,7 +22,7 @@ const Page = () => {
     // connsole.log("PLEASE FUCKING LOG IN");
     try {
       await signInWithGoogle();
-      router.push("/");
+      // router.push("/");
     } catch (err) {
       console.log(err);
     }
@@ -33,7 +33,7 @@ const Page = () => {
     if (isLoggedIn) {
       router.push("/");
     }
-  }, [isLoggedIn.router]);
+  }, [isLoggedIn]);
 
   return (
     <>
