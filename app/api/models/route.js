@@ -21,6 +21,11 @@ export async function POST(request) {
     Storage,
     Antutu_Score,
     DXO_Score,
+    Refresh_Rate,
+    Resolution,
+    Camera_Opinion,
+    Performance_Opinion,
+    Shop,
   } = await request.json();
   await connectMongoDB();
   await Model.create({
@@ -30,7 +35,6 @@ export async function POST(request) {
     Charging_Rate,
     Display_Size,
     Display_Type,
-    ID,
     Main_Camera,
     Price,
     Product_Name,
@@ -41,6 +45,11 @@ export async function POST(request) {
     Storage,
     Antutu_Score,
     DXO_Score,
+    Refresh_Rate,
+    Resolution,
+    Camera_Opinion,
+    Performance_Opinion,
+    Shop,
   });
   return NextResponse.json(
     { message: "Model created successfully!" },

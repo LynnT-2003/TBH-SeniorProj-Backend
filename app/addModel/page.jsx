@@ -11,7 +11,6 @@ export default function AddModel() {
   const [charging, setCharging] = useState("");
   const [displaySize, setDisplaySize] = useState("");
   const [displayType, setDisplayType] = useState("");
-  // const [id, setId] = useState("");
   const [mainCamera, setMainCamera] = useState("");
   const [SOC, setSOC] = useState("");
   const [weight, setWeight] = useState("");
@@ -217,8 +216,6 @@ export default function AddModel() {
           Add Model
         </button>
       </form>
-
-
     </div>
   );
 }

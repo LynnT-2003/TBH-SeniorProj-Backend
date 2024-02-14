@@ -23,6 +23,12 @@ export async function PUT(request, { params }) {
     newStorage: Storage,
     newAntutu_Score: Antutu_Score,
     newDXO_Score: DXO_Score,
+
+    newRefresh_Rate: Refresh_Rate,
+    newResolution: Resolution,
+    newCamera_Opinion: Camera_Opinion,
+    newPerformance_Opinion: Performance_Opinion,
+    newShop: Shop,
   } = await request.json();
   await connectMongoDB();
   await Model.findByIdAndUpdate(id, {
@@ -43,6 +49,12 @@ export async function PUT(request, { params }) {
     Storage,
     Antutu_Score,
     DXO_Score,
+
+    Refresh_Rate,
+    Resolution,
+    Camera_Opinion,
+    Performance_Opinion,
+    Shop,
   });
   return NextResponse.json(
     { message: "Model updated successfully!" },
