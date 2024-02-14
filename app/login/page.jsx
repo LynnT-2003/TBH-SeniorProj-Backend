@@ -69,8 +69,10 @@ const Page = () => {
     const storedIsLoggedIn = localStorage.getItem("isLoggedIn");
     if (storedIsLoggedIn) {
       setIsLoggedIn(true);
+      // review code here
+      router.push("/");
     }
-  }, []);
+  }, [isLoggedIn]);
 
   const handleSignIn = async () => {
     console.log(`Signing in with email: ${email}, password: ${password}`);

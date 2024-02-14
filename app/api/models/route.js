@@ -10,7 +10,6 @@ export async function POST(request) {
     Charging_Rate,
     Display_Size,
     Display_Type,
-    ID,
     Main_Camera,
     Price,
     Product_Name,
