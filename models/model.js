@@ -18,7 +18,7 @@ const modelSchema = new mongoose.Schema(
     Storage: { type: Number, required: true },
     Antutu_Score: Number,
     DXO_Score: Number,
-    Refresh_Rate: String,
+    Refresh_Rate: Number,
     Resolution: String,
     Camera_Opinion: String,
     Performance_Opinion: String,
