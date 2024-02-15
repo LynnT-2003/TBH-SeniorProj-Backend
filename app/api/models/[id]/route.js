@@ -12,7 +12,6 @@ export async function PUT(request, { params }) {
     newCharging_Rate: Charging_Rate,
     newDisplay_Size: Display_Size,
     newDisplay_Type: Display_Type,
-    newID: ID,
     newMain_Camera: Main_Camera,
     newPrice: Price,
     newProduct_Name: Product_Name,

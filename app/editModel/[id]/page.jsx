@@ -35,7 +35,6 @@ export default async function EditModel({ params }) {
     Charging_Rate,
     Display_Size,
     Display_Type,
-    ID,
     Main_Camera,
     Price,
     Product_Name,
@@ -46,6 +45,11 @@ export default async function EditModel({ params }) {
     Storage,
     Antutu_Score,
     DXO_Score,
+    Refresh_Rate,
+    Resolution,
+    Camera_Opinion,
+    Performance_Opinion,
+    Shop,
   } = model;
   return (
     <EditModelForm
@@ -56,7 +60,6 @@ export default async function EditModel({ params }) {
       Charging_Rate={Charging_Rate}
       Display_Size={Display_Size}
       Display_Type={Display_Type}
-      ID={ID}
       Main_Camera={Main_Camera}
       Price={Price}
       Product_Name={Product_Name}
@@ -67,6 +70,11 @@ export default async function EditModel({ params }) {
       Storage={Storage}
       Antutu_Score={Antutu_Score}
       DXO_Score={DXO_Score}
+      Refresh_Rate={Refresh_Rate}
+      Resolution={Resolution}
+      Camera_Opinion={Camera_Opinion}
+      Performance_Opinion={Performance_Opinion}
+      Shop={Shop}
     />
   );
 }
