@@ -126,6 +126,7 @@ export default function EditModelForm({
         throw new Error("Failed to Update Model.");
       } else {
         console.log("No error in updating model");
+        router.push("/");
       }
     } catch (error) {
       console.log("ERROR IS HERE:", error.message);
