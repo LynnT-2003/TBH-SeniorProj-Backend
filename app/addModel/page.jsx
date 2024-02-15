@@ -7,6 +7,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Grid from "@mui/material/Unstable_Grid2";
+import { useRouter } from "next/navigation";
 
 export default function AddModel() {
   const [brand, setBrand] = useState("");
@@ -37,6 +38,8 @@ export default function AddModel() {
   const handleToggleAdditionalInputs = () => {
     setShowAdditionalInputs((prev) => !prev);
   };
+
+  const router = useRouter();
 
   const displayTypes = ["OLED", "AMOLED", "Retina", "IPS", "LED"];
 
@@ -123,6 +126,14 @@ export default function AddModel() {
           }),
         }
       );
+      // Check if the request was successful
+      if (res.ok) {
+        // Use the router to navigate
+        router.push("/");
+      } else {
+        // Handle server errors or unsuccessful requests
+        alert("Failed to create the model.");
+      }
     } catch (error) {
       console.log(error);
     }

@@ -62,34 +62,36 @@ export default function EditModelForm({
   const router = useRouter();
 
   const handleSubmit = async (e) => {
+    console.log("REFRESH RATE:", newRefreshRate, newRefreshRate.type);
     e.preventDefault();
-    console.log("To update:", { newProductName });
-    console.log("Note to update:", { newNote });
-    console.log(
-      newProductName,
-      newBattery,
-      newBrand,
-      newChargingRate,
-      newDisplaySize,
-      newDisplayType,
-      newMainCamera,
-      newPrice,
-      newSOC,
-      newWeight,
-      newRam,
-      newStorage,
-      newAntutuScore,
-      newDXOScore,
-      newAvailableInLocalMarket,
-      newResolution,
-      newRefreshRate,
-      newCameraOpinion,
-      newPerformanceOpinion,
-      newShop
-    );
+    console.log("PUTTING...");
+    console.log({
+      newAvailable_in_local_market: newAvailableInLocalMarket,
+      newBattery: newBattery,
+      newBrand: newBrand,
+      newCharging_Rate: newChargingRate,
+      newDisplay_Size: newDisplaySize,
+      newDisplay_Type: newDisplayType,
+      newMain_Camera: newMainCamera,
+      newPrice: newPrice,
+      newProduct_Name: newProductName,
+      newSOC: newSOC,
+      newWeight: newWeight,
+      newNote: newNote,
+      newRam: newRam,
+      newStorage: newStorage,
+      newAntutu_Score: newAntutuScore,
+      newDXO_Score: newDXOScore,
+      newRefresh_Rate: Number(newRefreshRate),
+      newResolution: newResolution,
+      newCamera_Opinion: newCameraOpinion,
+      newPerformance_Opinion: newPerformanceOpinion,
+      newShop: newShop,
+    });
     try {
       const res = await fetch(
         `https://tbh-chat-essentials.vercel.app/api/models/${id}`,
+        // `http://localhost:3000/api/models/${id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -111,7 +113,7 @@ export default function EditModelForm({
             newAntutu_Score: newAntutuScore,
             newDXO_Score: newDXOScore,
 
-            newRefreshRate: newRefreshRate,
+            newRefreshRate: Number(newRefreshRate),
             newResolution: newResolution,
             newCameraOpinion: newCameraOpinion,
             newPerformanceOpinion: newPerformanceOpinion,
@@ -125,9 +127,8 @@ export default function EditModelForm({
       } else {
         console.log("No error in updating model");
       }
-      router.push("/");
     } catch (error) {
-      console.log(error);
+      console.log("ERROR IS HERE:", error.message);
     }
   };
 
@@ -143,28 +144,29 @@ export default function EditModelForm({
   };
 
   useEffect(() => {
-    console.log(
-      newProductName,
-      newBattery,
-      newBrand,
-      newChargingRate,
-      newDisplaySize,
-      newDisplayType,
-      newMainCamera,
-      newPrice,
-      newSOC,
-      newWeight,
-      newRam,
-      newStorage,
-      newAntutuScore,
-      newDXOScore,
-      newAvailableInLocalMarket,
-      newResolution,
-      newRefreshRate,
-      newCameraOpinion,
-      newPerformanceOpinion,
-      newShop
-    );
+    console.log({
+      newAvailable_in_local_market: newAvailableInLocalMarket,
+      newBattery: newBattery,
+      newBrand: newBrand,
+      newCharging_Rate: newChargingRate,
+      newDisplay_Size: newDisplaySize,
+      newDisplay_Type: newDisplayType,
+      newMain_Camera: newMainCamera,
+      newPrice: newPrice,
+      newProduct_Name: newProductName,
+      newSOC: newSOC,
+      newWeight: newWeight,
+      newNote: newNote,
+      newRam: newRam,
+      newStorage: newStorage,
+      newAntutu_Score: newAntutuScore,
+      newDXO_Score: newDXOScore,
+      newRefresh_Rate: newRefreshRate,
+      newResolution: newResolution,
+      newCamera_Opinion: newCameraOpinion,
+      newPerformance_Opinion: newPerformanceOpinion,
+      newShop: newShop,
+    });
   }, []);
 
   return (
