@@ -8,6 +8,9 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Grid from "@mui/material/Unstable_Grid2";
+import { auth } from "@/libs/Firebase";
+
+const allowedEmails = ["aungchammyae95@gmail.com", "allowed@example.com"];
 
 export default function EditModelForm({
   id,
@@ -33,6 +36,31 @@ export default function EditModelForm({
   Performance_Opinion,
   Shop,
 }) {
+  // const userEmail = auth.currentUser.email;
+
+  const [userEmail, setUserEmail] = useState(null);
+  const [isAllowedUser, setIsAllowedUser] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        const userEmail = user.email;
+        setUserEmail(userEmail);
+        setIsAllowedUser(allowedEmails.includes(userEmail));
+        console.log("User has logged in");
+      } else {
+        setUserEmail(null);
+        setIsAllowedUser(false);
+        console.log("User is logged out");
+      }
+    });
+
+    // Cleanup function
+    return () => unsubscribe();
+  }, []);
+
+  console.log("Logged in as:", userEmail);
+
   const [newProductName, setNewProductName] = useState(Product_Name);
   const [newNote, setNewNote] = useState(Note);
   const [newBattery, setNewBattery] = useState(Battery);
@@ -215,6 +243,7 @@ export default function EditModelForm({
           <Grid xs={4}>
             <div>
               <TextField
+                disabled={!isAllowedUser}
                 className="w-full"
                 onChange={(e) => setNewBrand(e.target.value)}
                 value={newBrand}
@@ -226,6 +255,7 @@ export default function EditModelForm({
           <Grid xs={8}>
             <div>
               <TextField
+                disabled={!isAllowedUser}
                 className="w-full"
                 onChange={(e) => setNewProductName(e.target.value)}
                 value={newProductName}
@@ -237,6 +267,7 @@ export default function EditModelForm({
           <Grid xs={4}>
             <div>
               <TextField
+                disabled={!isAllowedUser}
                 className="w-full"
                 onChange={(e) => setNewDXOScore(Number(e.target.value))}
                 value={newDXOScore}
@@ -248,6 +279,7 @@ export default function EditModelForm({
           <Grid xs={4}>
             <div>
               <TextField
+                disabled={!isAllowedUser}
                 className="w-full"
                 onChange={(e) => setNewAntutuScore(Number(e.target.value))}
                 value={newAntutuScore}
@@ -270,6 +302,7 @@ export default function EditModelForm({
           <Grid xs={4}>
             <div>
               <TextField
+                disabled={!isAllowedUser}
                 className="w-full"
                 onChange={(e) => setNewWeight(Number(e.target.value))}
                 value={newWeight}
@@ -281,6 +314,7 @@ export default function EditModelForm({
           <Grid xs={4}>
             <div>
               <TextField
+                disabled={!isAllowedUser}
                 className="w-full"
                 onChange={(e) => setNewStorage(Number(e.target.value))}
                 value={newStorage}
@@ -292,6 +326,7 @@ export default function EditModelForm({
           <Grid xs={4}>
             <div>
               <TextField
+                disabled={!isAllowedUser}
                 className="w-full"
                 onChange={(e) => setNewRam(Number(e.target.value))}
                 value={newRam}
@@ -303,6 +338,7 @@ export default function EditModelForm({
           <Grid xs={4}>
             <div>
               <TextField
+                disabled={!isAllowedUser}
                 className="w-full"
                 onChange={(e) => setNewDisplaySize(Number(e.target.value))}
                 value={newDisplaySize}
@@ -314,6 +350,7 @@ export default function EditModelForm({
           <Grid xs={4}>
             <div>
               <TextField
+                disabled={!isAllowedUser}
                 className="w-full"
                 onChange={(e) => setNewDisplayType(e.target.value)}
                 value={newDisplayType}
@@ -335,6 +372,7 @@ export default function EditModelForm({
           <Grid xs={4}>
             <div>
               <TextField
+                disabled={!isAllowedUser}
                 className="w-full"
                 onChange={(e) => setNewResolution(e.target.value)}
                 value={newResolution}
@@ -346,6 +384,7 @@ export default function EditModelForm({
           <Grid xs={4}>
             <div>
               <TextField
+                disabled={!isAllowedUser}
                 className="w-full"
                 onChange={(e) => setNewRefresh_Rate(Number(e.target.value))}
                 value={newRefresh_Rate}
@@ -357,6 +396,7 @@ export default function EditModelForm({
           <Grid xs={4}>
             <div>
               <TextField
+                disabled={!isAllowedUser}
                 className="w-full"
                 onChange={(e) => setNewBattery(Number(e.target.value))}
                 value={newBattery}
@@ -368,6 +408,7 @@ export default function EditModelForm({
           <Grid xs={4}>
             <div>
               <TextField
+                disabled={!isAllowedUser}
                 className="w-full"
                 onChange={(e) => setNewChargingRate(Number(e.target.value))}
                 value={newChargingRate}
@@ -379,6 +420,7 @@ export default function EditModelForm({
           <Grid xs={4}>
             <div>
               <TextField
+                disabled={!isAllowedUser}
                 className="w-full"
                 onChange={(e) => setNewMainCamera(Number(e.target.value))}
                 value={newMainCamera}
@@ -390,6 +432,7 @@ export default function EditModelForm({
           <Grid xs={8}>
             <div>
               <TextField
+                disabled={!isAllowedUser}
                 className="w-full"
                 onChange={(e) => setNewSOC(e.target.value)}
                 value={newSOC}
@@ -405,6 +448,7 @@ export default function EditModelForm({
                   Available in Local Market?
                 </InputLabel>
                 <Select
+                  disabled={!isAllowedUser}
                   labelId="availability-label"
                   id="availability"
                   value={newAvailableInLocalMarket.toString()}
@@ -422,6 +466,7 @@ export default function EditModelForm({
           <Grid xs={6}>
             <div>
               <TextField
+                disabled={!isAllowedUser}
                 className="w-full"
                 onChange={(e) => setNewShop(e.target.value)}
                 value={newShop}
@@ -433,6 +478,7 @@ export default function EditModelForm({
           <Grid xs={12}>
             <div>
               <TextField
+                disabled={!isAllowedUser}
                 className="w-full"
                 onChange={(e) => setNewNote(e.target.value)}
                 value={newNote}
@@ -444,6 +490,7 @@ export default function EditModelForm({
           <Grid xs={12}>
             <div>
               <TextField
+                disabled={!isAllowedUser}
                 className="w-full"
                 onChange={(e) => setNewCamera_Opinion(e.target.value)}
                 value={newCamera_Opinion}
@@ -455,6 +502,7 @@ export default function EditModelForm({
           <Grid xs={12}>
             <div>
               <TextField
+                disabled={!isAllowedUser}
                 className="w-full"
                 onChange={(e) => setNewPerformance_Opinion(e.target.value)}
                 value={newPerformance_Opinion}
