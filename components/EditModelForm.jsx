@@ -35,6 +35,8 @@ export default function EditModelForm({
   Camera_Opinion,
   Performance_Opinion,
   Shop,
+  Review_Link,
+  p_to_p,
 }) {
   // const userEmail = auth.currentUser.email;
 
@@ -87,6 +89,9 @@ export default function EditModelForm({
     useState(Performance_Opinion);
   const [newShop, setNewShop] = useState(Shop);
 
+  const [newReview_Link, setNewReview_Link] = useState(Review_Link);
+  const [newp_to_p, setNewp_to_p] = useState(p_to_p);
+
   const router = useRouter();
 
   const handleSubmit = async (e) => {
@@ -115,11 +120,14 @@ export default function EditModelForm({
       newCamera_Opinion: newCamera_Opinion,
       newPerformance_Opinion: newPerformance_Opinion,
       newShop: newShop,
+
+      newReview_Link: newReview_Link,
+      newp_to_p: newp_to_p,
     });
     try {
       const res = await fetch(
-        `https://tbh-chat-essentials.vercel.app/api/models/${id}`,
-        // `http://localhost:3000/api/models/${id}`,
+        // `https://tbh-chat-essentials.vercel.app/api/models/${id}`,
+        `http://localhost:3000/api/models/${id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -146,6 +154,9 @@ export default function EditModelForm({
             newCamera_Opinion: newCamera_Opinion,
             newPerformance_Opinion: newPerformance_Opinion,
             newShop: newShop,
+
+            newReview_Link: newReview_Link,
+            newp_to_p: newp_to_p,
           }),
         }
       );
@@ -162,8 +173,8 @@ export default function EditModelForm({
   };
 
   useEffect(() => {
-    console.log(newProductName);
-  }, [newProductName]);
+    console.log(newReview_Link);
+  }, [newReview_Link]);
 
   const titleStyle = {
     fontFamily: "Roboto", // Replace with the desired font family
@@ -195,6 +206,9 @@ export default function EditModelForm({
       newCamera_Opinion: newCamera_Opinion,
       newPerformance_Opinion: newPerformance_Opinion,
       newShop: newShop,
+
+      newReview_Link: newReview_Link,
+      newp_to_p: p_to_p,
     });
   }, []);
 
@@ -512,6 +526,26 @@ export default function EditModelForm({
             </div>
           </Grid>
         </Grid>
+        <div>
+          <TextField
+            disabled={!isAllowedUser}
+            className="w-full mt-6"
+            onChange={(e) => setNewReview_Link(e.target.value)}
+            value={newReview_Link}
+            type="text"
+            label="Review Link"
+          />
+        </div>
+        <div>
+          <TextField
+            disabled={!isAllowedUser}
+            className="w-full mt-6"
+            onChange={(e) => setNewp_to_p(Number(e.target.value))}
+            value={newp_to_p}
+            type="number"
+            label="p_to_p"
+          />
+        </div>
         <button
           type="submit"
           className="bg-green-600 font-bold text-white py-3 px-6 w-fit mt-2"
