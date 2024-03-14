@@ -20,7 +20,7 @@ export default function RemoveBtn({ id }) {
   };
   return (
     <button onClick={removeModel}>
-      <HiOutlineTrash className="text-red-400" size={24} />
+      <HiOutlineTrash className="text-red-400" size={40} />
     </button>
   );
 }

@@ -89,6 +89,11 @@ export default function ModelsList() {
     router.push("/login");
   };
 
+  const handleClick = (id) => {
+    console.log("Card has been clicked", id);
+    router.push(`/editModel/${id}`);
+  };
+
   if (loading) {
     return (
       <div className="flex justify-center items-center">
@@ -154,8 +159,9 @@ export default function ModelsList() {
       </div>
       {search(models).map((m) => (
         <div
-          className="px-12 p-4 border border-slate-300 my-3 flex justify-between gap-5"
+          className="card px-12 p-4 border border-slate-300 my-3 flex justify-between gap-5"
           key={m._id}
+          onClick={() => handleClick(m._id)}
         >
           <div>
             <h2 className="text-2xl">
@@ -167,11 +173,11 @@ export default function ModelsList() {
             </p>
           </div>
 
-          <div className="flex gap-2 items-start">
+          <div className="flex gap-2 justify-center items-center items-start">
             <RemoveBtn id={m._id} />
-            <Link href={`/editModel/${m._id}`}>
+            {/* <Link href={`/editModel/${m._id}`}>
               <HiPencilAlt className="" size={24} />
-            </Link>
+            </Link> */}
           </div>
         </div>
       ))}
