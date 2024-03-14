@@ -5,8 +5,11 @@ import Link from "next/link";
 import { RiAddBoxLine } from "react-icons/ri";
 import { auth } from "@/libs/Firebase";
 
+const allowedEmails = ["aungchammyae95@gmail.com", "allowed@example.com"];
+
 export default function Navbar() {
   const [userEmail, setUserEmail] = useState(null);
+  const [isAllowedUser, setIsAllowedUser] = useState(false);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -42,7 +45,7 @@ export default function Navbar() {
         )}
       </Link>
       <Link className="text-white text-bold ml-auto pr-2" href={"/addModel"}>
-        <RiAddBoxLine size={60} />
+        {isAllowedUser && <RiAddBoxLine size={60} />}
       </Link>
     </nav>
   );
