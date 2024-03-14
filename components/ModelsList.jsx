@@ -72,6 +72,10 @@ export default function ModelsList() {
 
   const fetchModels = async () => {
     const fetchedModels = await getModels();
+    fetchedModels.sort(
+      (a, b) =>
+        new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+    );
     setModels(fetchedModels);
     setLoading(false);
   };
