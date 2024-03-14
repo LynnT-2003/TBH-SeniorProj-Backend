@@ -83,6 +83,28 @@ export default function ModelsList() {
   };
 
   useEffect(() => {
+    fetchModels();
+  }, [models]);
+
+  // useEffect(() => {
+  //   // Function to fetch models
+  //   const fetchModels = async () => {
+  //     const fetchedModels = await getModels();
+  //     fetchedModels.sort(
+  //       (a, b) =>
+  //         new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+  //     );
+  //     setModels(fetchedModels);
+  //     setLoading(false);
+  //   };
+
+  //   // Call the fetchModels function after deleting a model
+  //   if (!loading) {
+  //     fetchModels();
+  //   }
+  // }, [models]);
+
+  useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         const userEmail = user.email;
@@ -98,10 +120,6 @@ export default function ModelsList() {
 
     // Cleanup function
     return () => unsubscribe();
-  }, []);
-
-  useEffect(() => {
-    fetchModels();
   }, []);
 
   const signOut = () => {
