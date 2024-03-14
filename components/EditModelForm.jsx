@@ -489,6 +489,30 @@ export default function EditModelForm({
               />
             </div>
           </Grid>
+          <Grid xs={6}>
+            <div>
+              <TextField
+                disabled={!isAllowedUser}
+                className="w-full"
+                onChange={(e) => setNewp_to_p(Number(e.target.value))}
+                value={newp_to_p}
+                type="number"
+                label="Price to Performance Score"
+              />
+            </div>
+          </Grid>
+          <Grid xs={6}>
+            <div>
+              <TextField
+                disabled={!isAllowedUser}
+                className="w-full"
+                onChange={(e) => setNewReview_Link(e.target.value)}
+                value={newReview_Link}
+                type="text"
+                label="Review Link"
+              />
+            </div>
+          </Grid>
           <Grid xs={12}>
             <div>
               <TextField
@@ -526,26 +550,7 @@ export default function EditModelForm({
             </div>
           </Grid>
         </Grid>
-        <div>
-          <TextField
-            disabled={!isAllowedUser}
-            className="w-full mt-6"
-            onChange={(e) => setNewReview_Link(e.target.value)}
-            value={newReview_Link}
-            type="text"
-            label="Review Link"
-          />
-        </div>
-        <div>
-          <TextField
-            disabled={!isAllowedUser}
-            className="w-full mt-6"
-            onChange={(e) => setNewp_to_p(Number(e.target.value))}
-            value={newp_to_p}
-            type="number"
-            label="p_to_p"
-          />
-        </div>
+
         <button
           type="submit"
           className="bg-green-600 font-bold text-white py-3 px-6 w-fit mt-2"

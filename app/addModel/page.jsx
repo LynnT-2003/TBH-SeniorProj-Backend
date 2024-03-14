@@ -355,6 +355,30 @@ export default function AddModel() {
             </div>
           </Grid>
 
+          <Grid xs={6}>
+            <div>
+              <TextField
+                className="w-full"
+                onChange={(e) => setP_to_p(Number(e.target.value))}
+                value={p_to_p}
+                type="number"
+                label="Price to Performance Score"
+              />
+            </div>
+          </Grid>
+
+          <Grid xs={6}>
+            <div>
+              <TextField
+                className="w-full"
+                onChange={(e) => setReviewLink(e.target.value)}
+                value={reviewLink}
+                type="text"
+                label="Review Link"
+              />
+            </div>
+          </Grid>
+
           {showAdditionalInputs && (
             <>
               <Grid xs={12}>
@@ -393,24 +417,6 @@ export default function AddModel() {
             </>
           )}
         </Grid>
-        <div>
-          <TextField
-            className="w-full"
-            onChange={(e) => setReviewLink(e.target.value)}
-            value={reviewLink}
-            type="text"
-            label="Review Link"
-          />
-        </div>
-        <div>
-          <TextField
-            className="w-full"
-            onChange={(e) => setP_to_p(Number(e.target.value))}
-            value={p_to_p}
-            type="number"
-            label="P2P"
-          />
-        </div>
 
         <Grid container>
           <Button
