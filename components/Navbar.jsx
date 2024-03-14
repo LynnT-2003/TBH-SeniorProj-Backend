@@ -25,14 +25,23 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="flex justify-between items-center bg-slate-800 px-8 py-3">
-      <Link className="text-white font-bold text-2xl pl-4" href={"/"}>
-        TBH-ChatBot Essentials
+    <nav
+      style={{ backgroundColor: "#274D65" }}
+      className="flex items-center bg-slate-800 px-8 py-3"
+    >
+      <img
+        src="/logo_tbhChatbot.png"
+        alt="Logo"
+        className="w-32 h-32
+      "
+      />
+      <Link className="text-white font-bold text-2xl" href={"/"}>
+        TBH-ChatBot CMS
         {userEmail && (
           <p className="text-sm font-normal">Logged in as {userEmail}</p>
         )}
       </Link>
-      <Link className="text-white text-bold p-2" href={"/addModel"}>
+      <Link className="text-white text-bold ml-auto pr-2" href={"/addModel"}>
         <RiAddBoxLine size={60} />
       </Link>
     </nav>
