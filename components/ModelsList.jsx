@@ -12,6 +12,9 @@ import {
   FormControl,
 } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { auth } from "@/libs/Firebase";
+
+const allowedEmails = ["aungchammyae95@gmail.com", "allowed@example.com"];
 
 const getModels = async () => {
   try {
@@ -34,9 +37,8 @@ const getModels = async () => {
 };
 
 export default function ModelsList() {
-  // const models = await getModels();
-
-  // const user = localStorage.getItem("name");
+  const [userEmail, setUserEmail] = useState(null);
+  const [isAllowedUser, setIsAllowedUser] = useState(false);
 
   const [models, setModels] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -79,6 +81,24 @@ export default function ModelsList() {
     setModels(fetchedModels);
     setLoading(false);
   };
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        const userEmail = user.email;
+        setUserEmail(userEmail);
+        setIsAllowedUser(allowedEmails.includes(userEmail));
+        console.log("User has logged in");
+      } else {
+        setUserEmail(null);
+        setIsAllowedUser(false);
+        console.log("User is logged out");
+      }
+    });
+
+    // Cleanup function
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     fetchModels();
@@ -174,7 +194,8 @@ export default function ModelsList() {
           </div>
 
           <div className="flex gap-2 justify-center items-center items-start">
-            <RemoveBtn id={m._id} />
+            {/* <RemoveBtn id={m._id} /> */}
+            {isAllowedUser && <RemoveBtn id={m._id} />}
             {/* <Link href={`/editModel/${m._id}`}>
               <HiPencilAlt className="" size={24} />
             </Link> */}
