@@ -33,6 +33,9 @@ export default function AddModel() {
   const [performanceOpinion, setPerformanceOpinion] = useState("");
   const [shop, setShop] = useState("");
 
+  const [reviewLink, setReviewLink] = useState("");
+  const [p_to_p, setP_to_p] = useState(null);
+
   const [showAdditionalInputs, setShowAdditionalInputs] = useState(false);
 
   const handleToggleAdditionalInputs = () => {
@@ -46,29 +49,32 @@ export default function AddModel() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Submitting:", e);
-    console.log(
-      brand,
-      productName,
-      availability,
-      price,
-      antutuScore,
-      dxoScore,
-      battery,
-      charging,
-      displaySize,
-      displayType,
-      mainCamera,
-      SOC,
-      weight,
-      RAM,
-      storage,
-      note,
-      refreshRate,
-      resolution,
-      cameraOpinion,
-      performanceOpinion,
-      shop
-    );
+    console.log({
+      // brand,
+      // productName,
+      // availability,
+      // price,
+      // antutuScore,
+      // dxoScore,
+      // battery,
+      // charging,
+      // displaySize,
+      // displayType,
+      // mainCamera,
+      // SOC,
+      // weight,
+      // RAM,
+      // storage,
+      // note,
+      // refreshRate,
+      // resolution,
+      // cameraOpinion,
+      // performanceOpinion,
+      // shop,
+
+      reviewLink,
+      p_to_p,
+    });
 
     if (!brand) {
       alert("Please enter a brand name");
@@ -78,6 +84,7 @@ export default function AddModel() {
     try {
       const res = await fetch(
         "https://tbh-chat-essentials.vercel.app/api/models",
+        // "http://localhost:3000/api/models",
         {
           method: "POST",
           mode: "no-cors",
@@ -85,23 +92,6 @@ export default function AddModel() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            // Brand: brand,
-            // Product_Name: productName,
-            // Price: price,
-            // Antutu_Score: antutuScore,
-            // DXO_Score: dxoScore,
-            // Battery: battery,
-            // Charging_Rate: charging,
-            // Display_Size: displaySize,
-            // Display_Type: displayType,
-            // // ID: id,
-            // Main_Camera: mainCamera,
-            // SOC: SOC,
-            // Weight: weight,
-            // RAM: RAM,
-            // Storage: storage,
-            // Note: note,
-            // Available_in_local_market: availability,
             Available_in_local_market: availability,
             Battery: battery,
             Brand: brand,
@@ -123,6 +113,9 @@ export default function AddModel() {
             Camera_Opinion: cameraOpinion,
             Performance_Opinion: performanceOpinion,
             Shop: shop,
+
+            Review_Link: reviewLink,
+            p_to_p: p_to_p,
           }),
         }
       );
@@ -132,6 +125,7 @@ export default function AddModel() {
         router.push("/");
       } else {
         // Handle server errors or unsuccessful requests
+        console.log(res);
         alert("Failed to create the model.");
       }
     } catch (error) {
@@ -399,6 +393,24 @@ export default function AddModel() {
             </>
           )}
         </Grid>
+        <div>
+          <TextField
+            className="w-full"
+            onChange={(e) => setReviewLink(e.target.value)}
+            value={reviewLink}
+            type="text"
+            label="Review Link"
+          />
+        </div>
+        <div>
+          <TextField
+            className="w-full"
+            onChange={(e) => setP_to_p(Number(e.target.value))}
+            value={p_to_p}
+            type="number"
+            label="P2P"
+          />
+        </div>
 
         <Grid container>
           <Button
@@ -418,42 +430,6 @@ export default function AddModel() {
           <Grid xs={8}></Grid>
           <Grid xs={4}></Grid>
         </Grid>
-
-        {/* Antutu Score */}
-
-        {/* DXO Score */}
-
-        {/* Battery Capacity */}
-
-        {/* Charging Rate */}
-
-        {/* Display Size */}
-
-        {/* Display Type */}
-
-        {/* Main Camera */}
-
-        {/* SOC */}
-
-        {/* Weight */}
-
-        {/* RAM */}
-
-        {/* Storage */}
-
-        {/* Availability */}
-        {/* <select
-        onChange={(e) => setAvailability(e.target.value === "true")}
-        value={availability.toString()}
-        className="border border-slate-500 px-8 py-2 w-fit"
-        id="availability"
-      >
-        <option value="" disabled selected hidden>
-          Available in Local Market?
-        </option>
-        <option value="true">Yes</option>
-        <option value="false">No</option>
-      </select> */}
       </form>
     </div>
   );

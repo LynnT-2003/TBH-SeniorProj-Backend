@@ -23,6 +23,8 @@ const modelSchema = new mongoose.Schema(
     Camera_Opinion: String,
     Performance_Opinion: String,
     Shop: { type: String, required: true },
+    Review_Link: String,
+    p_to_p: Number,
   },
   {
     timestamps: true,

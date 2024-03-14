@@ -25,7 +25,35 @@ export async function POST(request) {
     Camera_Opinion,
     Performance_Opinion,
     Shop,
+    Review_Link,
+    p_to_p,
   } = await request.json();
+
+  console.log("Received Data:", {
+    Available_in_local_market,
+    Battery,
+    Brand,
+    Charging_Rate,
+    Display_Size,
+    Display_Type,
+    Main_Camera,
+    Price,
+    Product_Name,
+    SOC,
+    Weight,
+    Note,
+    Ram,
+    Storage,
+    Antutu_Score,
+    DXO_Score,
+    Refresh_Rate,
+    Resolution,
+    Camera_Opinion,
+    Performance_Opinion,
+    Shop,
+    Review_Link,
+    p_to_p,
+  });
   await connectMongoDB();
   await Model.create({
     Available_in_local_market,
@@ -49,6 +77,8 @@ export async function POST(request) {
     Camera_Opinion,
     Performance_Opinion,
     Shop,
+    Review_Link,
+    p_to_p,
   });
   return NextResponse.json(
     { message: "Model created successfully!" },
