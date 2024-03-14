@@ -16,9 +16,11 @@ export default function Navbar() {
       if (user) {
         const userEmail = user.email;
         setUserEmail(userEmail);
+        setIsAllowedUser(allowedEmails.includes(userEmail));
         console.log("User has logged in");
       } else {
         setUserEmail(null);
+        setIsAllowedUser(false);
         console.log("User is logged out");
       }
     });
