@@ -75,11 +75,12 @@ const Page = () => {
   }, [isLoggedIn]);
 
   const handleSignIn = async () => {
-    console.log(`Signing in with email: ${email}, password: ${password}`);
+    // console.log(`Signing in with email: ${email}, password: ${password}`);
     console.log(`Types - Email: ${typeof email}, Password: ${typeof password}`);
 
     try {
       await signInWithEmailAndPass(email, password, setIsLoggedIn);
+      console.log("Logged in");
       // router.push("/");
     } catch (err) {
       console.error("Cannot log in (frontend)", err);

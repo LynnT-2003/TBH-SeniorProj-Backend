@@ -53,16 +53,16 @@ export default function EditModelForm({
   );
 
   const [newResolution, setNewResolution] = useState(Resolution);
-  const [newRefreshRate, setNewRefreshRate] = useState(Refresh_Rate);
-  const [newCameraOpinion, setNewCameraOpinion] = useState(Camera_Opinion);
-  const [newPerformanceOpinion, setNewPerformanceOpinion] =
+  const [newRefresh_Rate, setNewRefresh_Rate] = useState(Refresh_Rate);
+  const [newCamera_Opinion, setNewCamera_Opinion] = useState(Camera_Opinion);
+  const [newPerformance_Opinion, setNewPerformance_Opinion] =
     useState(Performance_Opinion);
   const [newShop, setNewShop] = useState(Shop);
 
   const router = useRouter();
 
   const handleSubmit = async (e) => {
-    console.log("REFRESH RATE:", newRefreshRate, newRefreshRate.type);
+    console.log("REFRESH RATE:", newRefresh_Rate, newRefresh_Rate.type);
     e.preventDefault();
     console.log("PUTTING...");
     console.log({
@@ -82,10 +82,10 @@ export default function EditModelForm({
       newStorage: newStorage,
       newAntutu_Score: newAntutuScore,
       newDXO_Score: newDXOScore,
-      newRefresh_Rate: Number(newRefreshRate),
+      newRefresh_Rate: Number(newRefresh_Rate),
       newResolution: newResolution,
-      newCamera_Opinion: newCameraOpinion,
-      newPerformance_Opinion: newPerformanceOpinion,
+      newCamera_Opinion: newCamera_Opinion,
+      newPerformance_Opinion: newPerformance_Opinion,
       newShop: newShop,
     });
     try {
@@ -113,10 +113,10 @@ export default function EditModelForm({
             newAntutu_Score: newAntutuScore,
             newDXO_Score: newDXOScore,
 
-            newRefreshRate: Number(newRefreshRate),
+            newRefresh_Rate: Number(newRefresh_Rate),
             newResolution: newResolution,
-            newCameraOpinion: newCameraOpinion,
-            newPerformanceOpinion: newPerformanceOpinion,
+            newCamera_Opinion: newCamera_Opinion,
+            newPerformance_Opinion: newPerformance_Opinion,
             newShop: newShop,
           }),
         }
@@ -162,10 +162,10 @@ export default function EditModelForm({
       newStorage: newStorage,
       newAntutu_Score: newAntutuScore,
       newDXO_Score: newDXOScore,
-      newRefresh_Rate: newRefreshRate,
+      newRefresh_Rate: newRefresh_Rate,
       newResolution: newResolution,
-      newCamera_Opinion: newCameraOpinion,
-      newPerformance_Opinion: newPerformanceOpinion,
+      newCamera_Opinion: newCamera_Opinion,
+      newPerformance_Opinion: newPerformance_Opinion,
       newShop: newShop,
     });
   }, []);
@@ -347,8 +347,8 @@ export default function EditModelForm({
             <div>
               <TextField
                 className="w-full"
-                onChange={(e) => setNewRefreshRate(Number(e.target.value))}
-                value={newRefreshRate}
+                onChange={(e) => setNewRefresh_Rate(Number(e.target.value))}
+                value={newRefresh_Rate}
                 type="number"
                 label="Refresh Rate /Hz"
               />
@@ -445,8 +445,8 @@ export default function EditModelForm({
             <div>
               <TextField
                 className="w-full"
-                onChange={(e) => setNewCameraOpinion(e.target.value)}
-                value={newCameraOpinion}
+                onChange={(e) => setNewCamera_Opinion(e.target.value)}
+                value={newCamera_Opinion}
                 type="text"
                 label="Camera Opinion"
               />
@@ -456,8 +456,8 @@ export default function EditModelForm({
             <div>
               <TextField
                 className="w-full"
-                onChange={(e) => setNewPerformanceOpinion(e.target.value)}
-                value={newPerformanceOpinion}
+                onChange={(e) => setNewPerformance_Opinion(e.target.value)}
+                value={newPerformance_Opinion}
                 type="text"
                 label="Performance Opinion"
               />
@@ -471,143 +471,6 @@ export default function EditModelForm({
           Update Model
         </button>
       </form>
-
-      {/* <h1 style={titleStyle} className="pt-0">Update an Entry</h1>
-      <p className="pb-5 text-xs">API ID: {id}</p>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-        <input
-          onChange={(e) => setNewProductName(e.target.value)}
-          value={newProductName}
-          className="border border-slate-500 px-8 py-2"
-          type="text"
-          placeholder="Product Name"
-        />
-
-        <label style={{ display: "flex", alignItems: "center" }}>
-          Note:&nbsp;&nbsp;
-          <input
-            list="notes"
-            className="border border-slate-500 px-8 py-2"
-            style={{ flex: 1 }} // Use flex: 1 to allow the input to take up remaining space
-            onChange={(e) => setNewNote(e.target.value)}
-            value={newNote}
-          />
-        </label>
-        <datalist id="notes">
-          <option value="This is note 1" />
-          <option value="This is note 2" />
-          <option value="This is note 3" />
-        </datalist>
-
-        <input
-          onChange={(e) => setNewAvailableInLocalMarket(e.target.value)}
-          className="border border-slate-500 px-8 py-2"
-          type="text"
-          placeholder="Available in Local Market"
-          value={newAvailableInLocalMarket}
-        />
-        <input
-          onChange={(e) => setNewBattery(e.target.value)}
-          className="border border-slate-500 px-8 py-2"
-          type="text"
-          placeholder="Battery"
-          value={newBattery}
-        />
-        <input
-          onChange={(e) => setNewBrand(e.target.value)}
-          className="border border-slate-500 px-8 py-2"
-          type="text"
-          placeholder="Brand"
-          value={newBrand}
-        />
-        <input
-          onChange={(e) => setNewChargingRate(e.target.value)}
-          className="border border-slate-500 px-8 py-2"
-          type="text"
-          placeholder="Charging Rate"
-          value={newChargingRate}
-        />
-        <input
-          onChange={(e) => setNewDisplaySize(e.target.value)}
-          className="border border-slate-500 px-8 py-2"
-          type="text"
-          placeholder="Display Size"
-          value={newDisplaySize}
-        />
-        <input
-          onChange={(e) => setNewDisplayType(e.target.value)}
-          className="border border-slate-500 px-8 py-2"
-          type="text"
-          placeholder="Display Type"
-          value={newDisplayType}
-        />
-        <input
-          onChange={(e) => setNewID(e.target.value)}
-          className="border border-slate-500 px-8 py-2"
-          type="text"
-          placeholder="ID"
-          value={newID}
-        />
-        <input
-          onChange={(e) => setNewMainCamera(e.target.value)}
-          className="border border-slate-500 px-8 py-2"
-          type="text"
-          placeholder="Main Camera"
-          value={newMainCamera}
-        />
-        <input
-          onChange={(e) => setNewPrice(e.target.value)}
-          className="border border-slate-500 px-8 py-2"
-          type="text"
-          placeholder="Price"
-          value={newPrice}
-        />
-        <input
-          onChange={(e) => setNewSOC(e.target.value)}
-          className="border border-slate-500 px-8 py-2"
-          type="text"
-          placeholder="SOC"
-          value={newSOC}
-        />
-        <input
-          onChange={(e) => setNewWeight(e.target.value)}
-          className="border border-slate-500 px-8 py-2"
-          type="text"
-          placeholder="Weight"
-          value={newWeight}
-        />
-        <input
-          onChange={(e) => setNewRam(e.target.value)}
-          className="border border-slate-500 px-8 py-2"
-          type="text"
-          placeholder="Ram"
-          value={newRam}
-        />
-        <input
-          onChange={(e) => setNewStorage(e.target.value)}
-          className="border border-slate-500 px-8 py-2"
-          type="text"
-          placeholder="Storage"
-          value={newStorage}
-        />
-        <input
-          onChange={(e) => setNewAntutuScore(e.target.value)}
-          className="border border-slate-500 px-8 py-2"
-          type="text"
-          placeholder="Antutu Score"
-          value={newAntutuScore}
-        />
-        <input
-          onChange={(e) => setNewDXOScore(e.target.value)}
-          className="border border-slate-500 px-8 py-2"
-          type="text"
-          placeholder="DXO Score"
-          value={newDXOScore}
-        />
-        <button className="bg-green-600 font-bold text-white py-3 px-6 w-fit">
-          Update Model
-        </button>
-      </form> */}
     </div>
   );
 }
