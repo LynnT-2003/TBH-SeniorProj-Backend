@@ -43,22 +43,50 @@ export default function EditModelForm({
   const [userEmail, setUserEmail] = useState(null);
   const [isAllowedUser, setIsAllowedUser] = useState(false);
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        const userEmail = user.email;
-        setUserEmail(userEmail);
-        setIsAllowedUser(allowedEmails.includes(userEmail));
-        console.log("User has logged in");
-      } else {
-        setUserEmail(null);
-        setIsAllowedUser(false);
-        console.log("User is logged out");
-      }
-    });
+  // useEffect(() => {
+  //   const unsubscribe = auth.onAuthStateChanged((user) => {
+  //     if (user) {
+  //       const userEmail = user.email;
+  //       setUserEmail(userEmail);
+  //       setIsAllowedUser(allowedEmails.includes(userEmail));
+  //       console.log("User has logged in");
+  //     } else {
+  //       setUserEmail(null);
+  //       setIsAllowedUser(false);
+  //       console.log("User is logged out");
+  //     }
+  //   });
 
-    // Cleanup function
-    return () => unsubscribe();
+  //   // Cleanup function
+  //   return () => unsubscribe();
+  // }, []);
+
+  useEffect(() => {
+    const storedUserEmail = localStorage.getItem("userEmail");
+    const storedIsAllowedUser = localStorage.getItem("isAllowedUser");
+
+    if (storedUserEmail && storedIsAllowedUser) {
+      setUserEmail(storedUserEmail);
+      setIsAllowedUser(JSON.parse(storedIsAllowedUser));
+    } else {
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          const userEmail = user.email;
+          localStorage.setItem("userEmail", userEmail);
+          const isAllowedUser = allowedEmails.includes(userEmail);
+          localStorage.setItem("isAllowedUser", isAllowedUser);
+          setUserEmail(userEmail);
+          setIsAllowedUser(isAllowedUser);
+          console.log("User has logged in");
+        } else {
+          localStorage.removeItem("userEmail");
+          localStorage.removeItem("isAllowedUser");
+          setUserEmail(null);
+          setIsAllowedUser(false);
+          console.log("User is logged out");
+        }
+      });
+    }
   }, []);
 
   console.log("Logged in as:", userEmail);
