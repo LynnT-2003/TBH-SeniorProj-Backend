@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "@mui/material";
+import { Alert, Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
@@ -9,6 +9,8 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Grid from "@mui/material/Unstable_Grid2";
 import { auth } from "@/libs/Firebase";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const allowedEmails = ["aungchammyae95@gmail.com", "allowed@example.com"];
 
@@ -122,8 +124,43 @@ export default function EditModelForm({
 
   const router = useRouter();
 
+  // const [refreshed, setRefreshed] = useState(false);
+  // useEffect(() => {
+  //   if (!refreshed) {
+  //     console.log("Refreshing...");
+  //     window.location.reload();
+  //     setRefreshed(true);
+  //   }
+  // }, []); // Empty dependency array ensures the effect runs only once, on component mount
+
+  // Function to display a toast notification when the model is updated successfully
+  const showToast = () =>
+    toast.info("🐺 Updating! Hang tight..", {
+      position: "top-right",
+      autoClose: 1400,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+  useEffect(() => {
+    toast.success("🦄 All Ready!", {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  }, []);
+
   const handleSubmit = async (e) => {
-    console.log("REFRESH RATE:", newRefresh_Rate, newRefresh_Rate.type);
+    // console.log("REFRESH RATE:", newRefresh_Rate, newRefresh_Rate.type);
     e.preventDefault();
     console.log("PUTTING...");
     console.log({
@@ -192,13 +229,27 @@ export default function EditModelForm({
       if (!res.ok) {
         throw new Error("Failed to Update Model.");
       } else {
-        console.log("No error in updating model");
-        router.push("/");
+        console.log("No error in updating model. Please show toast");
+        // alert("Model has been updated successfully! Please Wait..");
+
+        // toast.success("Model has been updated successfully! Please wait...");
+        showToast(); // Show toast on successful update
+        // setFormSubmitted(true);
+        window.location.reload();
       }
     } catch (error) {
       console.log("ERROR IS HERE:", error.message);
     }
   };
+
+  // // useEffect to show toast only when the form has been successfully submitted and page reloads
+  // useEffect(() => {
+  //   if (formSubmitted) {
+  //     showToast();
+  //     // Reset the formSubmitted state after showing the toast
+  //     setFormSubmitted(false);
+  //   }
+  // }, [formSubmitted]);
 
   useEffect(() => {
     console.log(newReview_Link);
@@ -493,7 +544,7 @@ export default function EditModelForm({
                   disabled={!isAllowedUser}
                   labelId="availability-label"
                   id="availability"
-                  value={newAvailableInLocalMarket.toString()}
+                  value={newAvailableInLocalMarket?.toString()}
                   onChange={(e) =>
                     setNewAvailableInLocalMarket(Number(e.target.value))
                   }
@@ -585,6 +636,16 @@ export default function EditModelForm({
         >
           Update Model
         </button>
+
+        <button
+          onClick={() => {
+            router.push("/");
+          }}
+          className="bg-green-600 font-bold text-white py-3 px-6 w-fit mt-2 ml-4"
+        >
+          Back to List
+        </button>
+        <ToastContainer />
       </form>
     </div>
   );
