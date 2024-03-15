@@ -203,9 +203,28 @@ export default function ModelsList() {
         >
           <div>
             <h2 className="text-2xl">
-              {m.Brand} {m.Product_Name}
+              {m.Brand} {m.Product_Name}{" "}
+              <span className="text-xl">
+                ({m.Storage}/{m.Ram})
+              </span>
             </h2>
-            <div className="">{m.Note}</div>
+            {m.Note && (
+              <h2>
+                {" "}
+                {"-"} {m.Note}
+              </h2>
+            )}
+
+            <h2 className="text-s mt-2">
+              {"Price to Performance: "} {m.p_to_p}
+            </h2>
+            {m.Antutu_Score || m.DXO_Score ? (
+              <h2 className="text-s">
+                {m.Antutu_Score && `Antutu Score: ${m.Antutu_Score} `}
+                {m.DXO_Score && `DXO Score: ${m.DXO_Score}`}
+              </h2>
+            ) : null}
+
             <p className="text-xs pt-3 text-blue-400">
               Last Updated At: {new Date(m.updatedAt).toLocaleString()}
             </p>
