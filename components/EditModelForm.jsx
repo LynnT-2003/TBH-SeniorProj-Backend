@@ -135,7 +135,7 @@ export default function EditModelForm({
 
   // Function to display a toast notification when the model is updated successfully
   const showToast = () =>
-    toast.info("🐺 Updating! Hang tight..", {
+    toast.info("🦜 Updating! Hang tight..", {
       position: "top-right",
       autoClose: 1400,
       hideProgressBar: true,
