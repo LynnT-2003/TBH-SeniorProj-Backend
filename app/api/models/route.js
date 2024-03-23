@@ -27,6 +27,8 @@ export async function POST(request) {
     Shop,
     Review_Link,
     p_to_p,
+    MessengerUrl,
+    ImgUrl,
   } = await request.json();
 
   console.log("Received Data:", {
@@ -53,6 +55,8 @@ export async function POST(request) {
     Shop,
     Review_Link,
     p_to_p,
+    MessengerUrl,
+    ImgUrl,
   });
   await connectMongoDB();
   await Model.create({
@@ -79,6 +83,8 @@ export async function POST(request) {
     Shop,
     Review_Link,
     p_to_p,
+    MessengerUrl,
+    ImgUrl,
   });
   return NextResponse.json(
     { message: "Model created successfully!" },
