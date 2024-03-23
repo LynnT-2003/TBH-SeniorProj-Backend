@@ -30,7 +30,7 @@ export async function PUT(request, { params }) {
 
     newReview_Link: Review_Link,
     newp_to_p: p_to_p,
-    newMessegnerUrl: MessengerUrl,
+    newMessengerUrl: MessengerUrl,
     newImgUrl: ImgUrl,
   } = await request.json();
   await connectMongoDB();
