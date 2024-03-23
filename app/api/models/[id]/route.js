@@ -30,6 +30,8 @@ export async function PUT(request, { params }) {
 
     newReview_Link: Review_Link,
     newp_to_p: p_to_p,
+    newMessegnerUrl: MessengerUrl,
+    newImgUrl: ImgUrl,
   } = await request.json();
   await connectMongoDB();
   await Model.findByIdAndUpdate(id, {
@@ -58,6 +60,9 @@ export async function PUT(request, { params }) {
 
     Review_Link,
     p_to_p,
+
+    MessengerUrl,
+    ImgUrl,
   });
   return NextResponse.json(
     { message: "Model updated successfully!" },
