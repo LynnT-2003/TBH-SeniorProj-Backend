@@ -36,6 +36,9 @@ export default function AddModel() {
   const [reviewLink, setReviewLink] = useState("");
   const [p_to_p, setP_to_p] = useState(null);
 
+  const [MessengerUrl, setMessengerUrl] = useState("");
+  const [ImgUrl, setImgUrl] = useState("");
+
   const [showAdditionalInputs, setShowAdditionalInputs] = useState(false);
 
   const handleToggleAdditionalInputs = () => {
@@ -83,8 +86,8 @@ export default function AddModel() {
 
     try {
       const res = await fetch(
-        "https://tbh-chat-essentials.vercel.app/api/models",
-        // "http://localhost:3000/api/models",
+        // "https://tbh-chat-essentials.vercel.app/api/models",
+        "http://localhost:3000/api/models",
         {
           method: "POST",
           mode: "no-cors",
@@ -116,6 +119,9 @@ export default function AddModel() {
 
             Review_Link: reviewLink,
             p_to_p: p_to_p,
+
+            MessengerUrl: MessengerUrl,
+            ImgUrl: ImgUrl,
           }),
         }
       );
@@ -375,6 +381,29 @@ export default function AddModel() {
                 value={reviewLink}
                 type="text"
                 label="Review Link"
+              />
+            </div>
+          </Grid>
+          <Grid xs={6}>
+            <div>
+              <TextField
+                className="w-full"
+                onChange={(e) => setMessengerUrl(e.target.value)}
+                value={MessengerUrl}
+                type="text"
+                label="Messenger Url"
+              />
+            </div>
+          </Grid>
+
+          <Grid xs={6}>
+            <div>
+              <TextField
+                className="w-full"
+                onChange={(e) => setImgUrl(e.target.value)}
+                value={ImgUrl}
+                type="text"
+                label="Image Url"
               />
             </div>
           </Grid>
