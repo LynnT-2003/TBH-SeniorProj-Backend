@@ -52,6 +52,9 @@ export default async function EditModel({ params }) {
     Shop,
     Review_Link,
     p_to_p,
+
+    MessengerUrl,
+    ImgUrl,
   } = model;
   return (
     <EditModelForm
@@ -79,6 +82,8 @@ export default async function EditModel({ params }) {
       Shop={Shop}
       Review_Link={Review_Link}
       p_to_p={p_to_p}
+      MessengerUrl={MessengerUrl}
+      ImgUrl={ImgUrl}
     />
   );
 }

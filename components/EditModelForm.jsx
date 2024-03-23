@@ -39,6 +39,9 @@ export default function EditModelForm({
   Shop,
   Review_Link,
   p_to_p,
+
+  MessengerUrl,
+  ImgUrl,
 }) {
   // const userEmail = auth.currentUser.email;
 
@@ -122,6 +125,9 @@ export default function EditModelForm({
   const [newReview_Link, setNewReview_Link] = useState(Review_Link);
   const [newp_to_p, setNewp_to_p] = useState(p_to_p);
 
+  const [NewMessengerUrl, setNewMessengerUrl] = useState(MessengerUrl);
+  const [NewImgUrl, setNewImgUrl] = useState(ImgUrl);
+
   const router = useRouter();
 
   // const [refreshed, setRefreshed] = useState(false);
@@ -188,6 +194,9 @@ export default function EditModelForm({
 
       newReview_Link: newReview_Link,
       newp_to_p: newp_to_p,
+
+      newMessengerUrl: NewMessengerUrl,
+      newImgUrl: NewImgUrl,
     });
     try {
       const res = await fetch(
@@ -222,6 +231,9 @@ export default function EditModelForm({
 
             newReview_Link: newReview_Link,
             newp_to_p: newp_to_p,
+
+            NewMessengerUrl: NewMessengerUrl,
+            NewImgUrl: NewImgUrl,
           }),
         }
       );
@@ -288,6 +300,9 @@ export default function EditModelForm({
 
       newReview_Link: newReview_Link,
       newp_to_p: p_to_p,
+
+      NewMessengerUrl: NewMessengerUrl,
+      NewImgUrl: NewImgUrl,
     });
   }, []);
 
@@ -589,6 +604,30 @@ export default function EditModelForm({
                 value={newReview_Link}
                 type="text"
                 label="Review Link"
+              />
+            </div>
+          </Grid>
+          <Grid xs={6}>
+            <div>
+              <TextField
+                disabled={!isAllowedUser}
+                className="w-full"
+                onChange={(e) => setNewMessengerUrl(e.target.value)}
+                value={NewMessengerUrl}
+                type="text"
+                label="Messenger Link"
+              />
+            </div>
+          </Grid>
+          <Grid xs={6}>
+            <div>
+              <TextField
+                disabled={!isAllowedUser}
+                className="w-full"
+                onChange={(e) => setNewImgUrl(e.target.value)}
+                value={NewImgUrl}
+                type="text"
+                label="Image Link"
               />
             </div>
           </Grid>
