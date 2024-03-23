@@ -195,13 +195,13 @@ export default function EditModelForm({
       newReview_Link: newReview_Link,
       newp_to_p: newp_to_p,
 
-      newMessengerUrl: newMessengerUrl,
-      newImgUrl: newImgUrl,
+      NewMessengerUrl: NewMessengerUrl,
+      newImgUrl: NewImgUrl,
     });
     try {
       const res = await fetch(
-        `https://tbh-chat-essentials.vercel.app/api/models/${id}`,
-        // `http://localhost:3000/api/models/${id}`,
+        // `https://tbh-chat-essentials.vercel.app/api/models/${id}`,
+        `http://localhost:3000/api/models/${id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
