@@ -25,6 +25,8 @@ const modelSchema = new mongoose.Schema(
     Shop: { type: String, required: true },
     Review_Link: String,
     p_to_p: Number,
+    MessengerUrl: String,
+    ImgUrl: String,
   },
   {
     timestamps: true,
