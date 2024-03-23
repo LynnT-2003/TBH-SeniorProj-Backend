@@ -125,8 +125,8 @@ export default function EditModelForm({
   const [newReview_Link, setNewReview_Link] = useState(Review_Link);
   const [newp_to_p, setNewp_to_p] = useState(p_to_p);
 
-  const [NewMessengerUrl, setNewMessengerUrl] = useState(MessengerUrl);
-  const [NewImgUrl, setNewImgUrl] = useState(ImgUrl);
+  const [newMessengerUrl, setNewMessengerUrl] = useState(MessengerUrl);
+  const [newImgUrl, setNewImgUrl] = useState(ImgUrl);
 
   const router = useRouter();
 
@@ -151,6 +151,14 @@ export default function EditModelForm({
       progress: undefined,
       theme: "light",
     });
+
+  useEffect(() => {
+    console.log("MessengerUrl changed:", newMessengerUrl);
+  }, [newMessengerUrl]);
+
+  useEffect(() => {
+    console.log("ImgUrl changed:", newImgUrl);
+  }, [newImgUrl]);
 
   useEffect(() => {
     toast.success("🦄 All Ready!", {
@@ -195,8 +203,8 @@ export default function EditModelForm({
       newReview_Link: newReview_Link,
       newp_to_p: newp_to_p,
 
-      NewMessengerUrl: NewMessengerUrl,
-      newImgUrl: NewImgUrl,
+      newMessengerUrl: newMessengerUrl,
+      newImgUrl: newImgUrl,
     });
     try {
       const res = await fetch(
@@ -232,8 +240,8 @@ export default function EditModelForm({
             newReview_Link: newReview_Link,
             newp_to_p: newp_to_p,
 
-            NewMessengerUrl: NewMessengerUrl,
-            NewImgUrl: NewImgUrl,
+            newMessengerUrl: newMessengerUrl,
+            newImgUrl: newImgUrl,
           }),
         }
       );
@@ -301,8 +309,8 @@ export default function EditModelForm({
       newReview_Link: newReview_Link,
       newp_to_p: p_to_p,
 
-      NewMessengerUrl: NewMessengerUrl,
-      NewImgUrl: NewImgUrl,
+      NewMessengerUrl: newMessengerUrl,
+      NewImgUrl: newImgUrl,
     });
   }, []);
 
@@ -613,7 +621,7 @@ export default function EditModelForm({
                 disabled={!isAllowedUser}
                 className="w-full"
                 onChange={(e) => setNewMessengerUrl(e.target.value)}
-                value={NewMessengerUrl}
+                value={newMessengerUrl}
                 type="text"
                 label="Messenger Link"
               />
@@ -625,7 +633,7 @@ export default function EditModelForm({
                 disabled={!isAllowedUser}
                 className="w-full"
                 onChange={(e) => setNewImgUrl(e.target.value)}
-                value={NewImgUrl}
+                value={newImgUrl}
                 type="text"
                 label="Image Link"
               />
