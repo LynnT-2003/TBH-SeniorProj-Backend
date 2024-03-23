@@ -86,8 +86,8 @@ export default function AddModel() {
 
     try {
       const res = await fetch(
-        // "https://tbh-chat-essentials.vercel.app/api/models",
-        "http://localhost:3000/api/models",
+        "https://tbh-chat-essentials.vercel.app/api/models",
+        // "http://localhost:3000/api/models",
         {
           method: "POST",
           mode: "no-cors",
