@@ -255,7 +255,7 @@ export default function EditModelForm({
         // toast.success("Model has been updated successfully! Please wait...");
         showToast(); // Show toast on successful update
         // setFormSubmitted(true);
-        // window.location.reload();
+        window.location.reload();
       }
     } catch (error) {
       console.log("ERROR IS HERE:", error.message);
