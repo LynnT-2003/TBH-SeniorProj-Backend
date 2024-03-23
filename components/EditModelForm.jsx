@@ -195,8 +195,8 @@ export default function EditModelForm({
       newReview_Link: newReview_Link,
       newp_to_p: newp_to_p,
 
-      newMessengerUrl: NewMessengerUrl,
-      newImgUrl: NewImgUrl,
+      newMessengerUrl: newMessengerUrl,
+      newImgUrl: newImgUrl,
     });
     try {
       const res = await fetch(
