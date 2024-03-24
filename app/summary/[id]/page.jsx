@@ -82,7 +82,7 @@ const ModelSummaryPage = ({ params }) => {
               height={27}
               className="mr-2"
             />
-            {model.Price} mmk
+            {model.Price.toLocaleString()} mmk
           </Grid>
           <Grid
             className="font-poppins font-bold relative flex justify-center items-center mb-12"
@@ -229,22 +229,6 @@ const ModelSummaryPage = ({ params }) => {
               </div>
               <div className="mt-1 mb-8">P to P</div>
             </div>
-          </Grid>
-
-          <Grid
-            className="font-poppins font-bold flex justify-center items-center"
-            xs={12}
-          >
-            {" "}
-            {model.Review_Link}
-          </Grid>
-
-          <Grid
-            className="font-poppins font-bold flex justify-center items-center"
-            xs={12}
-          >
-            {" "}
-            {model.MessengerUrl}
           </Grid>
         </Grid>
 

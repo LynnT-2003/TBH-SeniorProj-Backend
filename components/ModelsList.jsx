@@ -259,7 +259,7 @@ export default function ModelsList() {
                   </h2>
                 )}
                 <h2 className="text-s mt-2">
-                  {"Price: "} {m.Price} {"MMK"}
+                  {"Price: "} {m.Price.toLocaleString()} {"MMK"}
                 </h2>
 
                 <h2 className="text-s">
