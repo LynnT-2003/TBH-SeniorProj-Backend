@@ -155,7 +155,7 @@ const ModelSummaryPage = ({ params }) => {
                   className="mb-1"
                 />
               </div>
-              Display: {model.Display_Size}" {model.Refresh_Rate}Hz
+              Display: {model.Display_Size}&quot; {model.Refresh_Rate}Hz
             </div>
           </Grid>
 
