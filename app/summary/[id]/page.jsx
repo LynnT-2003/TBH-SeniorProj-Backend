@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
 import Image from "next/image";
 import CircularProgress from "@mui/joy/CircularProgress";
+import Button from "@mui/material";
 
 import { useContext } from "react";
 import { LayoutProvider } from "@/libs/LayoutContext";
@@ -45,7 +46,7 @@ const ModelSummaryPage = ({ params }) => {
   // Render model details
   return (
     // <LayoutProvider>
-    <div className="relative flex items-center justify-center pt-4">
+    <div className="relative flex items-center justify-center">
       {/* {showNavbar && <Navbar />} */}
       <h1>
         <Grid container justify="center" alignItems="center">
@@ -174,12 +175,16 @@ const ModelSummaryPage = ({ params }) => {
             >
               <div style={{ display: "flex", alignItems: "center" }}>
                 <CircularProgress
+                  size="lg"
+                  thickness={7}
+                  color="primary"
                   determinate
                   value={Math.round((model.Antutu_Score / 2100000) * 100)}
-                />
-                <h1 className="font-poppins font-bold ml-2">
-                  {Math.round((model.Antutu_Score / 2100000) * 100)}%
-                </h1>
+                >
+                  <h1 className="font-poppins font-bold">
+                    {Math.round((model.Antutu_Score / 2100000) * 100)}%
+                  </h1>
+                </CircularProgress>
               </div>
               <div className="mt-1 mb-8">Performance</div>
             </div>
@@ -199,12 +204,16 @@ const ModelSummaryPage = ({ params }) => {
               {model.DXO_Score && model.DXO_Score > 0 ? (
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <CircularProgress
+                    size="lg"
+                    thickness={7}
+                    color="primary"
                     determinate
                     value={Math.round((model.DXO_Score / 158) * 100)}
-                  />
-                  <h1 className="font-poppins font-bold ml-2">
-                    {Math.round((model.DXO_Score / 158) * 100)}%
-                  </h1>
+                  >
+                    <h1 className="font-poppins font-bold">
+                      {Math.round((model.DXO_Score / 158) * 100)}%
+                    </h1>
+                  </CircularProgress>
                 </div>
               ) : (
                 <div
@@ -231,12 +240,16 @@ const ModelSummaryPage = ({ params }) => {
             >
               <div style={{ display: "flex", alignItems: "center" }}>
                 <CircularProgress
+                  size="lg"
+                  thickness={7}
+                  color="primary"
                   determinate
                   value={Math.round((model.p_to_p / 1.6) * 100)}
-                />
-                <h1 className="font-poppins font-bold ml-2">
-                  {Math.round((model.p_to_p / 1.6) * 100)}%
-                </h1>
+                >
+                  <h1 className="font-poppins font-bold ml-2">
+                    {Math.round((model.p_to_p / 1.6) * 100)}%
+                  </h1>
+                </CircularProgress>
               </div>
               <div className="mt-1 mb-8">P to P</div>
             </div>
