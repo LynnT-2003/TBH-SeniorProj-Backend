@@ -45,7 +45,7 @@ const ModelSummaryPage = ({ params }) => {
   // Render model details
   return (
     // <LayoutProvider>
-    <div className="relative flex items-center justify-center pt-8">
+    <div className="relative flex items-center justify-center pt-4">
       {/* {showNavbar && <Navbar />} */}
       <h1>
         <Grid container justify="center" alignItems="center">
@@ -254,7 +254,7 @@ const ModelSummaryPage = ({ params }) => {
               alt="YouTube Icon"
               width={25}
               height={25}
-              className="mr-4"
+              className="mr-2"
             />
             <div>Watch the Review</div>
           </Grid>
@@ -287,9 +287,9 @@ const ModelSummaryPage = ({ params }) => {
           >
             <Image
               src="/messenger-icon.png"
-              alt="Messenger Icon"
-              width={40}
-              height={40}
+              alt="YouTube Icon"
+              width={25}
+              height={25}
               className="mr-2"
             />
             <div>Message the Seller</div>
@@ -306,9 +306,9 @@ const ModelSummaryPage = ({ params }) => {
           >
             <Image
               src="/messenger-icon.png"
-              alt="Messenger Icon"
-              width={40}
-              height={40}
+              alt="YouTube Icon"
+              width={25}
+              height={25}
               className="mr-2"
             />
             <div>Message the Seller</div>
