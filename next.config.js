@@ -1,4 +1,8 @@
 module.exports = {
+  images: {
+    domains: ["i.imgur.com"], // Add the hostname(s) here
+  },
+
   async headers() {
     return [
       {

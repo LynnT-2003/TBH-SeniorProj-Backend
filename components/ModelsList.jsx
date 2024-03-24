@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { auth } from "@/libs/Firebase";
+import Image from "next/image";
 
 const allowedEmails = ["aungchammyae95@gmail.com", "allowed@example.com"];
 
@@ -229,41 +230,57 @@ export default function ModelsList() {
           key={m._id}
           onClick={() => handleClick(m._id)}
         >
-          <div>
-            <h2 className="text-2xl">
-              {m.Brand} {m.Product_Name}{" "}
-              <span className="text-xl">
-                ({m.Storage}/{m.Ram})
-              </span>
-            </h2>
-            {m.Note && (
-              <h2>
-                {" "}
-                {"-"} {m.Note}
-              </h2>
+          <div className="flex gap-4">
+            {m.ImgUrl && (
+              <div className="image-container mr-4 flex justify-center items-center">
+                <Image
+                  src={m.ImgUrl}
+                  alt={`${m.Brand} ${m.Product_Name} Image`}
+                  width={150}
+                  height={150}
+                  objectFit="cover"
+                  objectPosition="0% 50%"
+                />
+              </div>
             )}
+            <div className="flex flex-col justify-between">
+              <div>
+                <h2 className="text-2xl">
+                  {m.Brand} {m.Product_Name}{" "}
+                  <span className="text-xl">
+                    ({m.Storage}/{m.Ram})
+                  </span>
+                </h2>
+                {m.Note && (
+                  <h2>
+                    {" - "} {m.Note}
+                  </h2>
+                )}
 
-            <h2 className="text-s mt-2">
-              {"Price to Performance: "} {m.p_to_p}
-            </h2>
-            {m.Antutu_Score || m.DXO_Score ? (
-              <h2 className="text-s">
-                {m.Antutu_Score && `Antutu Score: ${m.Antutu_Score} `}
-                {m.DXO_Score && `DXO Score: ${m.DXO_Score}`}
-              </h2>
-            ) : null}
-
-            <p className="text-xs pt-3 text-blue-400">
-              Last Updated At: {new Date(m.updatedAt).toLocaleString()}
-            </p>
+                <h2 className="text-s mt-2">
+                  {"Price to Performance: "} {m.p_to_p}
+                </h2>
+                {m.Antutu_Score || m.DXO_Score ? (
+                  <h2 className="text-s">
+                    {m.Antutu_Score && `Antutu Score: ${m.Antutu_Score} `}
+                    {m.DXO_Score && `DXO Score: ${m.DXO_Score}`}
+                  </h2>
+                ) : null}
+              </div>
+              <div className="flex items-end">
+                <p className="text-xs text-blue-400">
+                  Last Updated At: {new Date(m.updatedAt).toLocaleString()}
+                </p>
+              </div>
+            </div>
           </div>
 
           <div className="flex gap-2 justify-center items-center items-start">
             {/* <RemoveBtn id={m._id} /> */}
             {isAllowedUser && <RemoveBtn id={m._id} />}
             {/* <Link href={`/editModel/${m._id}`}>
-              <HiPencilAlt className="" size={24} />
-            </Link> */}
+            <HiPencilAlt className="" size={24} />
+          </Link> */}
           </div>
         </div>
       ))}
