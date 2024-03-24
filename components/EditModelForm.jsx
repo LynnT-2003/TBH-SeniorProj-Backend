@@ -337,8 +337,24 @@ export default function EditModelForm({
 
       <datalist id="display">
         <option value="IPS" />
+        <option value="TFT LCD" />
         <option value="OLED" />
-        <option value="PLS LED" />
+        <option value="Flexible OLED" />
+      </datalist>
+
+      <datalist id="reseller">
+        <option
+          value="Kyaw Mobile Mawlamyine
+"
+        />
+        <option
+          value="Mobile Gallery Bangkok
+"
+        />
+        <option
+          value="Phone King
+"
+        />
       </datalist>
 
       <datalist id="refreshRate">
@@ -591,6 +607,11 @@ export default function EditModelForm({
                 value={newShop}
                 type="text"
                 label="Recommended Shop / Reseller"
+                InputProps={{
+                  inputProps: {
+                    list: "reseller",
+                  },
+                }}
               />
             </div>
           </Grid>
