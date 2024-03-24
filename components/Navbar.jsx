@@ -60,7 +60,7 @@ export default function Navbar() {
   return (
     <nav
       style={{ backgroundColor: "#274D65" }}
-      className="flex items-center bg-slate-800 px-8 py-3"
+      className="flex items-center bg-slate-800 px-8 py-3 mb-8"
     >
       <img
         src="/logo_tbhChatbot.png"

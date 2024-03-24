@@ -11,6 +11,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { auth } from "@/libs/Firebase";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Navbar from "./Navbar";
 
 const allowedEmails = ["aungchammyae95@gmail.com", "allowed@example.com"];
 
@@ -316,6 +317,8 @@ export default function EditModelForm({
 
   return (
     <div>
+      <Navbar />
+
       <datalist id="ram">
         <option value={4} />
         <option value={6} />

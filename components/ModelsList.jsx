@@ -14,6 +14,7 @@ import {
 import { useRouter } from "next/navigation";
 import { auth } from "@/libs/Firebase";
 import Image from "next/image";
+import Navbar from "./Navbar";
 
 const allowedEmails = ["aungchammyae95@gmail.com", "allowed@example.com"];
 
@@ -175,6 +176,7 @@ export default function ModelsList() {
   return (
     <>
       <div>
+        <Navbar />
         <Grid container spacing={2} className="">
           <Grid xs={6} className="pl-4">
             <TextField

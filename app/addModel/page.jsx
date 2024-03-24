@@ -8,6 +8,7 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Grid from "@mui/material/Unstable_Grid2";
 import { useRouter } from "next/navigation";
+import Navbar from "@/components/Navbar";
 
 export default function AddModel() {
   const [brand, setBrand] = useState("");
@@ -141,6 +142,7 @@ export default function AddModel() {
 
   return (
     <div>
+      <Navbar />
       <h1 className="mb-4 text-xl">Create an Entry</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
         <Grid container spacing={2}>
