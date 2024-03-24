@@ -61,7 +61,7 @@ const ModelSummaryPage = ({ params }) => {
           <Grid
             className="flex justify-center items-center font-poppins font-bold mt-8"
             xs={12}
-            style={{ fontSize: 24 }}
+            style={{ fontSize: 20 }}
           >
             {model.Brand}
             {model.Product_Name} {"("}
@@ -73,7 +73,7 @@ const ModelSummaryPage = ({ params }) => {
           <Grid
             className="flex justify-center items-center font-poppins font-bold mt-2 mb-8"
             xs={12}
-            style={{ fontSize: 24 }}
+            style={{ fontSize: 20 }}
           >
             <Image
               src="/price-icon.png"
@@ -105,7 +105,7 @@ const ModelSummaryPage = ({ params }) => {
                   className="mb-1"
                 />
               </div>
-              <div>Weight: {model.Weight}g</div>
+              <div>{model.Weight}g</div>
             </div>
           </Grid>
 
@@ -130,7 +130,9 @@ const ModelSummaryPage = ({ params }) => {
                   className="mb-1"
                 />
               </div>
-              SOC: {model.SOC}
+              <div className="flex justify-center items-center text-center">
+                {model.SOC}
+              </div>
             </div>
           </Grid>
 
@@ -155,7 +157,7 @@ const ModelSummaryPage = ({ params }) => {
                   className="mb-1"
                 />
               </div>
-              Display: {model.Display_Size}&quot; {model.Refresh_Rate}Hz
+              {model.Display_Size}&quot; {model.Refresh_Rate}Hz
             </div>
           </Grid>
 
@@ -194,15 +196,24 @@ const ModelSummaryPage = ({ params }) => {
                 alignItems: "center",
               }}
             >
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <CircularProgress
-                  determinate
-                  value={Math.round((model.DXO_Score / 158) * 100)}
-                />
-                <h1 className="font-poppins font-bold ml-2">
-                  {Math.round((model.DXO_Score / 158) * 100)}%
-                </h1>
-              </div>
+              {model.DXO_Score && model.DXO_Score > 0 ? (
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <CircularProgress
+                    determinate
+                    value={Math.round((model.DXO_Score / 158) * 100)}
+                  />
+                  <h1 className="font-poppins font-bold ml-2">
+                    {Math.round((model.DXO_Score / 158) * 100)}%
+                  </h1>
+                </div>
+              ) : (
+                <div
+                  className="font-poppins font-bold"
+                  style={{ color: "#808080" }}
+                >
+                  Unknown
+                </div>
+              )}
               <div className="mt-1 mb-8">Camera</div>
             </div>
           </Grid>
@@ -235,8 +246,7 @@ const ModelSummaryPage = ({ params }) => {
         {model.Review_Link ? (
           <Grid
             xs={12}
-            style={{ backgroundColor: "#D9D9D9" }}
-            className="font-poppins font-bold flex justify-center items-center py-4 mx-4"
+            className="url-container font-poppins font-bold flex justify-center items-center py-4 mx-4"
             onClick={() => window.open(model.Review_Link, "_blank")}
           >
             <Image
@@ -244,7 +254,7 @@ const ModelSummaryPage = ({ params }) => {
               alt="YouTube Icon"
               width={25}
               height={25}
-              className="mr-2"
+              className="mr-4"
             />
             <div>Watch the Review</div>
           </Grid>
@@ -272,8 +282,7 @@ const ModelSummaryPage = ({ params }) => {
         {model.MessengerUrl ? (
           <Grid
             xs={12}
-            style={{ backgroundColor: "#D9D9D9" }}
-            className="font-poppins font-bold flex justify-center items-center py-4 mx-4 mt-4"
+            className="url-container font-poppins font-bold flex justify-center items-center py-4 mx-4 mt-4"
             onClick={() => (window.location.href = model.MessengerUrl)}
           >
             <Image
