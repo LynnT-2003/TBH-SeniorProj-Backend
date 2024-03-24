@@ -248,7 +248,7 @@ export default function ModelsList() {
                 <h2 className="text-2xl">
                   {m.Brand} {m.Product_Name}{" "}
                   <span className="text-xl">
-                    ({m.Storage}/{m.Ram})
+                    ({m.Ram}/{m.Storage})
                   </span>
                 </h2>
                 {m.Note && (
@@ -256,16 +256,19 @@ export default function ModelsList() {
                     {" - "} {m.Note}
                   </h2>
                 )}
-
                 <h2 className="text-s mt-2">
+                  {"Price: "} {m.Price} {"MMK"}
+                </h2>
+
+                <h2 className="text-s">
                   {"Price to Performance: "} {m.p_to_p}
                 </h2>
-                {m.Antutu_Score || m.DXO_Score ? (
+                {/* {m.Antutu_Score || m.DXO_Score ? (
                   <h2 className="text-s">
                     {m.Antutu_Score && `Antutu Score: ${m.Antutu_Score} `}
                     {m.DXO_Score && `DXO Score: ${m.DXO_Score}`}
                   </h2>
-                ) : null}
+                ) : null} */}
               </div>
               <div className="flex items-end">
                 <p className="text-xs text-blue-400">
