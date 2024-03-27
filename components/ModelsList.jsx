@@ -15,7 +15,7 @@ import { auth } from "@/libs/Firebase";
 import Image from "next/image";
 import Navbar from "./Navbar";
 
-const pageSize = 10;
+const pageSize = 5;
 
 const allowedEmails = ["aungchammyae95@gmail.com", "allowed@example.com"];
 
@@ -53,6 +53,9 @@ export default function ModelsList() {
 
   const [selectedFilter, setSelectedFilter] = useState("");
 
+  const [selectedBrandFilter, setSelectedBrandFilter] = useState("");
+  const [selectedShopFilter, setSelectedShopFilter] = useState("");
+
   const router = useRouter();
 
   useEffect(() => {
@@ -63,23 +66,36 @@ export default function ModelsList() {
     }
   }, [router]);
 
+  // const search = (data) => {
+  //   return data.filter((item) => {
+  //     const searchTerm = `${item.Brand} ${item.Product_Name}`.toLowerCase();
+  //     return searchTerm.includes(query.toLowerCase());
+  //   });
+  // };
+
+  // const filteredModels = search(models).filter((item) => {
+  //   const keyMatch = item.Brand.toLowerCase().includes(query.toLowerCase());
+  //   const productMatch = item.Product_Name.toLowerCase().includes(
+  //     query.toLowerCase()
+  //   );
+  //   const filterMatch = selectedFilter ? item.Shop === selectedFilter : true;
+  //   return (keyMatch || productMatch) && filterMatch;
+  // });
+
+  // Update the search function to include filters for both brand and shop
   const search = (data) => {
     return data.filter((item) => {
-      const keyMatch = keys.some((key) =>
-        item[key].toLowerCase().includes(query.toLowerCase())
+      const searchTerm = `${item.Brand} ${item.Product_Name}`.toLowerCase();
+      return (
+        searchTerm.includes(query.toLowerCase()) &&
+        (selectedBrandFilter ? item.Brand === selectedBrandFilter : true) &&
+        (selectedShopFilter ? item.Shop === selectedShopFilter : true)
       );
-      const filterMatch = selectedFilter
-        ? item.Brand === selectedFilter || item.Shop === selectedFilter
-        : true;
-      return keyMatch && filterMatch;
     });
   };
 
-  const filteredModels = search(models).filter((item) => {
-    const keyMatch = item.Brand.toLowerCase().includes(query.toLowerCase());
-    const filterMatch = selectedFilter ? item.Shop === selectedFilter : true;
-    return keyMatch && filterMatch;
-  });
+  // Update the filteredModels function to use the selectedBrandFilter and selectedShopFilter
+  const filteredModels = search(models);
 
   const fetchModels = async () => {
     const fetchedModels = await getModels();
@@ -176,9 +192,9 @@ export default function ModelsList() {
             <FormControl fullWidth size="small">
               <InputLabel>Filter by Shop:</InputLabel>
               <Select
-                value={selectedFilter}
-                onChange={(e) => setSelectedFilter(e.target.value)}
-                label="Filter by Brand:"
+                value={selectedShopFilter}
+                onChange={(e) => setSelectedShopFilter(e.target.value)}
+                label="Filter by Shop:"
                 style={{ width: "95%" }}
               >
                 <MenuItem value="">
@@ -194,8 +210,8 @@ export default function ModelsList() {
             <FormControl fullWidth size="small">
               <InputLabel>Filter by Brand:</InputLabel>
               <Select
-                value={selectedFilter}
-                onChange={(e) => setSelectedFilter(e.target.value)}
+                value={selectedBrandFilter}
+                onChange={(e) => setSelectedBrandFilter(e.target.value)}
                 label="Filter by Brand:"
               >
                 <MenuItem value="">
