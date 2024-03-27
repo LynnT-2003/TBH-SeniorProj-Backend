@@ -149,7 +149,7 @@ export default function ModelsList() {
     router.push("/login");
   };
 
-  const handleClick = (id) => {
+  const handleCardClick = (id) => {
     console.log("Card has been clicked", id);
     router.push(`/editModel/${id}`);
   };
@@ -232,11 +232,17 @@ export default function ModelsList() {
         <div
           className="card px-12 p-4 border border-slate-300 my-3 flex justify-between gap-5"
           key={m._id}
-          onClick={() => handleClick(m._id)}
+          onClick={() => handleCardClick(m._id)}
         >
           <div className="flex gap-4">
             {m.ImgUrl && (
-              <div className="image-container mr-4 flex justify-center items-center">
+              <div
+                className="image-container mr-4 flex justify-center items-center"
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevents the event from bubbling up
+                  router.push(`/summary/${m._id}`);
+                }}
+              >
                 <Image
                   src={m.ImgUrl}
                   alt={`${m.Brand} ${m.Product_Name} Image`}
