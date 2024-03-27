@@ -56,14 +56,12 @@ export default function ModelsList() {
     // Redirect to login if not logged in
     const isLoggedIn = localStorage.getItem("isLoggedIn");
     if (!isLoggedIn || isLoggedIn === "false") {
-      router.push("/login"); // Redirect to login page
+      router.push("/login");
     }
   }, [router]);
 
   const search = (data) => {
-    // return data.filter((item => keys.some((key) => item[key].toLowerCase().includes(query.toLowerCase()))))
     return data.filter((item) => {
-      // const brandMatch = item.Brand.toLowerCase().includes(query.toLowerCase());
       const keyMatch = keys.some((key) =>
         item[key].toLowerCase().includes(query.toLowerCase())
       );
@@ -87,42 +85,6 @@ export default function ModelsList() {
   useEffect(() => {
     fetchModels();
   }, [models]);
-
-  // useEffect(() => {
-  //   // Function to fetch models
-  //   const fetchModels = async () => {
-  //     const fetchedModels = await getModels();
-  //     fetchedModels.sort(
-  //       (a, b) =>
-  //         new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
-  //     );
-  //     setModels(fetchedModels);
-  //     setLoading(false);
-  //   };
-
-  //   // Call the fetchModels function after deleting a model
-  //   if (!loading) {
-  //     fetchModels();
-  //   }
-  // }, [models]);
-
-  // useEffect(() => {
-  //   const unsubscribe = auth.onAuthStateChanged((user) => {
-  //     if (user) {
-  //       const userEmail = user.email;
-  //       setUserEmail(userEmail);
-  //       setIsAllowedUser(allowedEmails.includes(userEmail));
-  //       console.log("User has logged in");
-  //     } else {
-  //       setUserEmail(null);
-  //       setIsAllowedUser(false);
-  //       console.log("User is logged out");
-  //     }
-  //   });
-
-  //   // Cleanup function
-  //   return () => unsubscribe();
-  // }, []);
 
   useEffect(() => {
     const storedUserEmail = localStorage.getItem("userEmail");
