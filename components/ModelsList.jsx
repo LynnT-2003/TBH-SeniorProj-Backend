@@ -1,9 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import Pagination from "@mui/material/Pagination";
 import RemoveBtn from "./RemoveBtn";
-import { HiPencilAlt } from "react-icons/hi";
-import { Grid, Item } from "@mui/material";
+import { Grid } from "@mui/material";
 import {
   Select,
   TextField,
@@ -15,6 +14,8 @@ import { useRouter } from "next/navigation";
 import { auth } from "@/libs/Firebase";
 import Image from "next/image";
 import Navbar from "./Navbar";
+
+const pageSize = 10;
 
 const allowedEmails = ["aungchammyae95@gmail.com", "allowed@example.com"];
 
@@ -48,6 +49,8 @@ export default function ModelsList() {
   const keys = ["Brand", "Product_Name"];
   const [query, setQuery] = useState("");
 
+  const [page, setPage] = useState(1);
+
   const [selectedFilter, setSelectedFilter] = useState("");
 
   const router = useRouter();
@@ -71,6 +74,12 @@ export default function ModelsList() {
       return keyMatch && filterMatch;
     });
   };
+
+  const filteredModels = search(models).filter((item) => {
+    const keyMatch = item.Brand.toLowerCase().includes(query.toLowerCase());
+    const filterMatch = selectedFilter ? item.Shop === selectedFilter : true;
+    return keyMatch && filterMatch;
+  });
 
   const fetchModels = async () => {
     const fetchedModels = await getModels();
@@ -114,6 +123,11 @@ export default function ModelsList() {
     }
   }, []);
 
+  useEffect(() => {
+    // Set current page to 1 whenever the query changes
+    setPage(1);
+  }, [query]);
+
   const signOut = () => {
     localStorage.clear();
     router.push("/login");
@@ -123,6 +137,15 @@ export default function ModelsList() {
     console.log("Card has been clicked", id);
     router.push(`/editModel/${id}`);
   };
+
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
+
+  const paginatedModels = filteredModels.slice(
+    (page - 1) * pageSize,
+    page * pageSize
+  );
 
   if (loading) {
     return (
@@ -188,7 +211,8 @@ export default function ModelsList() {
           </Grid>
         </Grid>
       </div>
-      {search(models).map((m) => (
+
+      {paginatedModels.map((m) => (
         <div
           className="card px-12 p-4 border border-slate-300 my-3 flex justify-between gap-5"
           key={m._id}
@@ -228,11 +252,11 @@ export default function ModelsList() {
                   {"Price to Performance: "} {m.p_to_p}
                 </h2>
                 {/* {m.Antutu_Score || m.DXO_Score ? (
-                  <h2 className="text-s">
-                    {m.Antutu_Score && `Antutu Score: ${m.Antutu_Score} `}
-                    {m.DXO_Score && `DXO Score: ${m.DXO_Score}`}
-                  </h2>
-                ) : null} */}
+                <h2 className="text-s">
+                  {m.Antutu_Score && `Antutu Score: ${m.Antutu_Score} `}
+                  {m.DXO_Score && `DXO Score: ${m.DXO_Score}`}
+                </h2>
+              ) : null} */}
               </div>
               <div className="flex items-end">
                 <p className="text-xs text-blue-400">
@@ -246,14 +270,38 @@ export default function ModelsList() {
             {/* <RemoveBtn id={m._id} /> */}
             {isAllowedUser && <RemoveBtn id={m._id} />}
             {/* <Link href={`/editModel/${m._id}`}>
-            <HiPencilAlt className="" size={24} />
-          </Link> */}
+          <HiPencilAlt className="" size={24} />
+        </Link> */}
           </div>
         </div>
       ))}
+
+      <div className="flex justify-between items-center mb-4">
+        <Pagination
+          count={Math.ceil(filteredModels.length / pageSize)}
+          page={page}
+          onChange={handlePageChange}
+          variant="outlined"
+          shape="rounded"
+          color="primary"
+        />
+        <button className="border border-slate-500 px-2" onClick={signOut}>
+          Sign out
+        </button>
+      </div>
+
+      {/* <Pagination
+        count={Math.ceil(filteredModels.length / pageSize)}
+        page={page}
+        onChange={handlePageChange}
+        variant="outlined"
+        shape="rounded"
+        color="primary"
+      />
+
       <button className="border border-slate-500 px-2" onClick={signOut}>
         Sign out
-      </button>
+      </button> */}
     </>
   );
 }
